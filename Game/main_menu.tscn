@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://3wiksjp86ng"]
+[gd_scene load_steps=3 format=3 uid="uid://3wiksjp86ng"]
+
+[ext_resource type="Theme" uid="uid://chub8xaykuame" path="res://main_menu.tres" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://e5j2w6ortl3s" path="res://MMbutton.gd" id="2_7vrkn"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -7,3 +10,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.329412, 0.396078, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_06t4h")
+text = "Start"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_06t4h")
+text = "Options"
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_06t4h")
+text = "Credits"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_06t4h")
+text = "Exit"
+
+[node name="MenuButtonManager" type="Node" parent="." node_paths=PackedStringArray("startButton", "optionsButton", "creditsButton", "exitButton")]
+process_mode = 3
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+script = ExtResource("2_7vrkn")
+startButton = NodePath("../VBoxContainer/Start")
+optionsButton = NodePath("../VBoxContainer/Options")
+creditsButton = NodePath("../VBoxContainer/Credits")
+exitButton = NodePath("../VBoxContainer/Exit")
