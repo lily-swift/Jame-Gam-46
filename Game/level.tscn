@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=12 format=3 uid="uid://bw14fnsdi7bdq"]
 
-[ext_resource type="Script" uid="uid://2fqyy1a65sm7" path="res://playerController.gd" id="1_vonw3"]
-[ext_resource type="SpriteFrames" uid="uid://3ao12oolqb86" path="res://playerSpriteFrames.tres" id="2_oi3di"]
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://smallbuildingballoonplaceholder.png" id="3_0b4ue"]
 [ext_resource type="Texture2D" uid="uid://cqpk7jgeo8v5n" path="res://smallbuildingplaceholder.png" id="4_f2txt"]
+[ext_resource type="Texture2D" uid="uid://d1m7yntmu0is2" path="res://floating.png" id="5_1ainy"]
+[ext_resource type="Texture2D" uid="uid://cam117q00rtq0" path="res://playerballoonm.png" id="5_f2txt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
 animations = [{
@@ -35,35 +35,32 @@ b = Vector2(-24, -55)
 a = Vector2(24, -16)
 b = Vector2(24, -55)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6hdu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_f2txt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km5ld"]
+radius = 7.5
+height = 16.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2t4f"]
+size = Vector2(320, 20)
+
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-collision_mask = 7
-script = ExtResource("1_vonw3")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
-polygon = PackedVector2Array(-8, -11, -4, -17, 4, -17, 8, -11, 8, 3, 16, 9, 16, 23, -16, 23, -16, 9, -8, 3)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = ExtResource("2_oi3di")
-animation = &"Idle"
-
-[node name="RCbottom" type="RayCast2D" parent="CharacterBody2D"]
-position = Vector2(0, 22)
-target_position = Vector2(0, 5)
-
-[node name="RCbottomleft" type="RayCast2D" parent="CharacterBody2D"]
-position = Vector2(-15, 22)
-target_position = Vector2(0, 3)
-
-[node name="RCbottomright" type="RayCast2D" parent="CharacterBody2D"]
-position = Vector2(15, 22)
-target_position = Vector2(0, 3)
-
 [node name="SmallBuilding" type="RigidBody2D" parent="."]
+position = Vector2(73, 58)
 collision_layer = 4
 collision_mask = 7
+mass = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SmallBuilding"]
 sprite_frames = SubResource("SpriteFrames_1ainy")
@@ -72,13 +69,71 @@ sprite_frames = SubResource("SpriteFrames_1ainy")
 shape = SubResource("RectangleShape2D_n6hdu")
 
 [node name="LeftEdge" type="Area2D" parent="SmallBuilding"]
+visible = false
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding/LeftEdge"]
 shape = SubResource("SegmentShape2D_km5ld")
 
 [node name="RightEdge" type="Area2D" parent="SmallBuilding"]
+visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding/RightEdge"]
 shape = SubResource("SegmentShape2D_i2t4f")
+
+[node name="Balloon" type="RigidBody2D" parent="."]
+position = Vector2(0, 5)
+collision_layer = 32
+collision_mask = 7
+gravity_scale = -1.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, -5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Balloon"]
+sprite_frames = SubResource("SpriteFrames_n6hdu")
+offset = Vector2(0, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Balloon"]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_km5ld")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 80)
+collision_layer = 2
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_i2t4f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="VirusBody" type="RigidBody2D" parent="."]
+position = Vector2(0, 7)
+collision_mask = 38
+mass = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, 8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VirusBody"]
+polygon = PackedVector2Array(8, 3, 15, 9, 16, 23, 0, 20, -16, 23, -15, 9, -8, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="VirusBody"]
+texture = ExtResource("5_1ainy")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="VirusBody"]
+node_a = NodePath("..")
+node_b = NodePath("../../Balloon")
+disable_collision = false
+
+[node name="RCbottom" type="RayCast2D" parent="VirusBody"]
+position = Vector2(0, 20)
+target_position = Vector2(0, 7)
+
+[node name="RCbottomleft" type="RayCast2D" parent="VirusBody"]
+position = Vector2(-16, 22)
+target_position = Vector2(0, 3)
+
+[node name="RCbottomright" type="RayCast2D" parent="VirusBody"]
+position = Vector2(16, 22)
+target_position = Vector2(0, 3)
