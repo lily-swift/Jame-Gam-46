@@ -1,10 +1,10 @@
 [gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://3ao12oolqb86"]
 
-[ext_resource type="Texture2D" uid="uid://vm6htt1phd75" path="res://monster.png" id="1_jqn81"]
-[ext_resource type="Texture2D" uid="uid://d1m7yntmu0is2" path="res://floating.png" id="1_qrsih"]
-[ext_resource type="Texture2D" uid="uid://bwcwtposte0fn" path="res://jump_transition.png" id="3_ckxf0"]
-[ext_resource type="Texture2D" uid="uid://c7a5jbp7hl1dt" path="res://inject_start.png" id="4_ckxf0"]
-[ext_resource type="Texture2D" uid="uid://dkyoyt8usi66r" path="res://inject.png" id="5_vlvjo"]
+[ext_resource type="Texture2D" uid="uid://vm6htt1phd75" path="res://Art/monster.png" id="1_jqn81"]
+[ext_resource type="Texture2D" uid="uid://d1m7yntmu0is2" path="res://Art/floating.png" id="1_qrsih"]
+[ext_resource type="Texture2D" uid="uid://bwcwtposte0fn" path="res://Art/jump_transition.png" id="3_ckxf0"]
+[ext_resource type="Texture2D" uid="uid://c7a5jbp7hl1dt" path="res://Art/inject_start.png" id="4_ckxf0"]
+[ext_resource type="Texture2D" uid="uid://dkyoyt8usi66r" path="res://Art/inject.png" id="5_vlvjo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd7aa"]
 atlas = ExtResource("5_vlvjo")

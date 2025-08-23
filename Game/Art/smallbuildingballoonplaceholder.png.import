@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1m7yntmu0is2"
-path="res://.godot/imported/floating.png-17b08963554d969608d7cca43e798b4f.ctex"
+uid="uid://coti1xaemoomq"
+path="res://.godot/imported/smallbuildingballoonplaceholder.png-8e74f74d71362da88d2653d4ecec7d3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://floating.png"
-dest_files=["res://.godot/imported/floating.png-17b08963554d969608d7cca43e798b4f.ctex"]
+source_file="res://Art/smallbuildingballoonplaceholder.png"
+dest_files=["res://.godot/imported/smallbuildingballoonplaceholder.png-8e74f74d71362da88d2653d4ecec7d3b.ctex"]
 
 [params]
 

@@ -8,7 +8,7 @@ class_name MainMenu extends Node
 var levelScene : PackedScene;
 
 func _ready():
-	levelScene = preload("res://level.tscn");
+	levelScene = preload("res://Scenes/level.tscn");
 	startButton.pressed.connect(_start_pressed);
 	optionsButton.pressed.connect(_options_pressed);
 	creditsButton.pressed.connect(_credits_pressed);

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://3wiksjp86ng"]
 
-[ext_resource type="Theme" uid="uid://chub8xaykuame" path="res://main_menu.tres" id="1_06t4h"]
-[ext_resource type="Script" uid="uid://e5j2w6ortl3s" path="res://MMbutton.gd" id="2_7vrkn"]
+[ext_resource type="Theme" uid="uid://chub8xaykuame" path="res://Resources/main_menu.tres" id="1_48xlc"]
+[ext_resource type="Script" uid="uid://e5j2w6ortl3s" path="res://Scripts/MMbutton.gd" id="2_1ehe0"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -37,25 +37,25 @@ grow_vertical = 2
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_06t4h")
+theme = ExtResource("1_48xlc")
 text = "Start"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_06t4h")
+theme = ExtResource("1_48xlc")
 text = "Options"
 
 [node name="Credits" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_06t4h")
+theme = ExtResource("1_48xlc")
 text = "Credits"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_06t4h")
+theme = ExtResource("1_48xlc")
 text = "Exit"
 
 [node name="MenuButtonManager" type="Node" parent="." node_paths=PackedStringArray("startButton", "optionsButton", "creditsButton", "exitButton")]
@@ -63,7 +63,7 @@ process_mode = 3
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
-script = ExtResource("2_7vrkn")
+script = ExtResource("2_1ehe0")
 startButton = NodePath("../VBoxContainer/Start")
 optionsButton = NodePath("../VBoxContainer/Options")
 creditsButton = NodePath("../VBoxContainer/Credits")

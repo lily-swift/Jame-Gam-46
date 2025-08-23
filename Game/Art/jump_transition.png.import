@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cam117q00rtq0"
-path="res://.godot/imported/playerballoonm.png-1bed55f6ebc7df60437466b84b784a00.ctex"
+uid="uid://bwcwtposte0fn"
+path="res://.godot/imported/jump_transition.png-f0bb7b9761fcc44dab2e017e2382b700.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://playerballoonm.png"
-dest_files=["res://.godot/imported/playerballoonm.png-1bed55f6ebc7df60437466b84b784a00.ctex"]
+source_file="res://Art/jump_transition.png"
+dest_files=["res://.godot/imported/jump_transition.png-f0bb7b9761fcc44dab2e017e2382b700.ctex"]
 
 [params]
 
