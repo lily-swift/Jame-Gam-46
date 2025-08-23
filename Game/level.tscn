@@ -1,12 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=9 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Script" uid="uid://2fqyy1a65sm7" path="res://playerController.gd" id="1_vonw3"]
 [ext_resource type="SpriteFrames" uid="uid://3ao12oolqb86" path="res://playerSpriteFrames.tres" id="2_oi3di"]
+[ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://smallbuildingballoonplaceholder.png" id="3_0b4ue"]
+[ext_resource type="Texture2D" uid="uid://cqpk7jgeo8v5n" path="res://smallbuildingplaceholder.png" id="4_f2txt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0b4ue")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_f2txt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6hdu"]
+size = Vector2(48, 32)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_km5ld"]
+a = Vector2(-24, -16)
+b = Vector2(-24, -55)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_i2t4f"]
+a = Vector2(24, -16)
+b = Vector2(24, -55)
 
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_mask = 7
 script = ExtResource("1_vonw3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
@@ -27,3 +60,25 @@ target_position = Vector2(0, 3)
 [node name="RCbottomright" type="RayCast2D" parent="CharacterBody2D"]
 position = Vector2(15, 22)
 target_position = Vector2(0, 3)
+
+[node name="SmallBuilding" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 7
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SmallBuilding"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding"]
+shape = SubResource("RectangleShape2D_n6hdu")
+
+[node name="LeftEdge" type="Area2D" parent="SmallBuilding"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding/LeftEdge"]
+shape = SubResource("SegmentShape2D_km5ld")
+
+[node name="RightEdge" type="Area2D" parent="SmallBuilding"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding/RightEdge"]
+shape = SubResource("SegmentShape2D_i2t4f")
