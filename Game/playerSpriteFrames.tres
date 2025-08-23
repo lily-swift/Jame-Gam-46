@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://3ao12oolqb86"]
+
+[ext_resource type="Texture2D" uid="uid://vm6htt1phd75" path="res://monster.png" id="1_jqn81"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jqn81")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]

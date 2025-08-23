@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=3 format=3 uid="uid://bw14fnsdi7bdq"]
+
+[ext_resource type="Script" uid="uid://2fqyy1a65sm7" path="res://playerController.gd" id="1_vonw3"]
+[ext_resource type="SpriteFrames" uid="uid://3ao12oolqb86" path="res://playerSpriteFrames.tres" id="2_oi3di"]
 
 [node name="Level" type="Node2D"]
+texture_filter = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_vonw3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(-8, -11, -4, -17, 4, -17, 8, -11, 8, 3, 16, 9, 16, 23, -16, 23, -16, 9, -8, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = ExtResource("2_oi3di")
+animation = &"Idle"
+
+[node name="RCbottom" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(0, 22)
+target_position = Vector2(0, 5)
+
+[node name="RCbottomleft" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(-15, 22)
+target_position = Vector2(0, 3)
+
+[node name="RCbottomright" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(15, 22)
+target_position = Vector2(0, 3)
