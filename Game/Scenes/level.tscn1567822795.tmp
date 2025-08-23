@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=29 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Texture2D" uid="uid://cqpk7jgeo8v5n" path="res://Art/smallbuildingplaceholder.png" id="2_wqkje"]
@@ -129,12 +129,6 @@ height = 16.5
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2t4f"]
 size = Vector2(320, 20)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2klc5"]
-friction = 2.0
-rough = true
-bounce = 0.2
-absorbent = true
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3a44l"]
 atlas = ExtResource("16_00k4y")
 region = Rect2(32, 0, 32, 48)
@@ -195,9 +189,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2klc5"]
-radius = 2.0
-
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
@@ -227,22 +218,16 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding/RightEdge"]
 shape = SubResource("SegmentShape2D_i2t4f")
 
-[node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims")]
+[node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody")]
 position = Vector2(0, 5)
 collision_layer = 32
 collision_mask = 7
-gravity_scale = -0.5
+gravity_scale = -1.0
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, -5)
-angular_damp = 13.0
 script = ExtResource("4_wqkje")
+jumpCoolDown = null
 virusBody = NodePath("../VirusBody")
-virusAnims = NodePath("../VirusBody/AnimatedSprite2D")
-jumpForce = 1100.0
-jumpDuration = 0.3
-moveSpeed = 200.0
-frictionX = 3.0
-frictionY = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Balloon"]
 sprite_frames = SubResource("SpriteFrames_n6hdu")
@@ -252,13 +237,6 @@ offset = Vector2(0, 2)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Balloon"]
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_km5ld")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Balloon"]
-node_a = NodePath("..")
-node_b = NodePath("../../VirusBody")
-disable_collision = false
-angular_limit_lower = -0.523599
-angular_limit_upper = 0.523599
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 80)
@@ -273,15 +251,17 @@ shape = SubResource("RectangleShape2D_i2t4f")
 [node name="VirusBody" type="RigidBody2D" parent="."]
 position = Vector2(0, 7)
 collision_mask = 38
-mass = 2.3
-physics_material_override = SubResource("PhysicsMaterial_2klc5")
-gravity_scale = 0.5
+mass = 2.0
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, 8)
-angular_damp = 2.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VirusBody"]
-polygon = PackedVector2Array(8, 6, 14, 9, 16, 23, 11, 23, 5, 16, -5, 16, -11, 23, -16, 23, -14, 9, -8, 6)
+polygon = PackedVector2Array(8, 3, 15, 9, 16, 23, 0, 20, -16, 23, -15, 9, -8, 3)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="VirusBody"]
+node_a = NodePath("..")
+node_b = NodePath("../../Balloon")
+disable_collision = false
 
 [node name="RCbottom" type="RayCast2D" parent="VirusBody"]
 position = Vector2(0, 20)
@@ -297,12 +277,4 @@ target_position = Vector2(0, 3)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VirusBody"]
 sprite_frames = SubResource("SpriteFrames_gf56v")
-animation = &"Float"
-
-[node name="NeckPillowRight" type="CollisionShape2D" parent="VirusBody"]
-position = Vector2(7, 3)
-shape = SubResource("CircleShape2D_2klc5")
-
-[node name="NeckPillowLeft" type="CollisionShape2D" parent="VirusBody"]
-position = Vector2(-7, 3)
-shape = SubResource("CircleShape2D_2klc5")
+animation = &"Idle"
