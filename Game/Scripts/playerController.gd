@@ -4,13 +4,18 @@ var input_directionW : int = 0
 var jumpPressed : bool = false
 var drillPressed : bool = false
 @export var jumpCoolDown : float = 1
+@export var jumps : int = 3
+var jumpsLeft : int = 3
 var jumpCDT : float = 1
 var jumpT : float = 0;
 @export var virusBody : RigidBody2D
 @export var virusAnims : AnimatedSprite2D
+@export var groundDetector : Area2D
 var balloonInflationLevel : int = 1;
 @export var jumpForce : float = 1000;
 @export var jumpStartup : float = 0.1;
+var jumpSUT : float = 0;
+var jumpELT : float = 0;
 @export var jumpEndLag : float = 0.1; 
 @export var jumpDuration : float = 0.25
 @export var moveSpeed : float = 100;
@@ -19,6 +24,7 @@ var upAnimTimer : float = -1;
 @export var frictionY : float = 1;
 
 var state : String = "Idle"
+var size : int = 2;
 
 var rot : float = 0;
 
@@ -51,50 +57,96 @@ func timers(delta):
 		jumpCDT -= delta
 	if(jumpT > 0):
 		jumpT -= delta
+		if(jumpT <= 0):
+			jumpELT = jumpEndLag
 	if(upAnimTimer > -1):
 		upAnimTimer += delta
+	if(jumpSUT > 0):
+		jumpSUT -= delta
+		if(jumpSUT <= 0):
+			jumpT = jumpDuration
+	if(jumpELT > 0):
+		jumpELT -= delta
+		if(jumpELT <= 0):
+			size = 2
 
 func jump():
 	print("jump")
 	#apply_central_impulse(jumpImpuse * Vector2(0,-1))
 	jumpCDT = jumpCoolDown
-	jumpT = jumpDuration
+	jumpSUT = jumpStartup
+	jumpsLeft -= 1
+	#jumpT = jumpDuration
+	
+
+func on_ground():
+	return groundDetector.has_overlapping_bodies()
+	
+	
 
 func _process(delta):
 	get_input()
 	timers(delta)
 	
-	print(linear_velocity)
+	print(state)
+	print(size)
 	
 	#states
 	if(linear_velocity.y < -4):
 		if(upAnimTimer == -1):
 			upAnimTimer = 0
 		elif upAnimTimer > 0.3:
-			state = "Fall"
-			virusAnims.play("Idle")
+			state = "Float"
 	
-	if(linear_velocity.y > 2 and virusAnims.animation == "Idle"):
-		state = "Float"
+	if(linear_velocity.y > 2 and state == "Float"):
+		state = "Fall"
 	
-	if(state == "Fall" or state == "Idle"):
-		virusAnims.play("Idle")
+	if(on_ground()):
+		state = "Idle"
+		if(jumpCDT <= 0):
+			jumpsLeft = jumps
+	
+	if state == "Fall":
+		virusAnims.play("Fall")
 	elif state == "Float":
-		virusAnims.play("Float")
+		virusAnims.play("Jump")
+	elif state == "Idle":
+		virusAnims.play("Idle")
 	
 	#Jump
-	if jumpPressed and (jumpCDT <= 0):
+	if jumpPressed and (jumpCDT <= 0) and jumpsLeft > 0:
 		jump()
 	
-	if(jumpT > 0):
-		apply_central_force(Vector2(0,-1) * jumpForce)
-		if(state == "Fall"):
-			$AnimatedSprite2D.play("IdleL")
-		if(state == "Float"):
-			$AnimatedSprite2D.play("FloatL")
+	if(jumpT > 0 or jumpELT > 0 or jumpSUT > 0):
+		size = 3
+		mass = 1.6
+	elif jumpsLeft == 0:
+		size = 1
+		mass = 0.7
 	else:
-		if(state == "Fall"):
-			$AnimatedSprite2D.play("IdleM")
-		if(state == "Float"):
+		size = 2
+		mass = 1
+	
+	if(state == "Fall"):
+		if(size == 1):
+			$AnimatedSprite2D.play("FloatS")
+		elif(size == 2):
 			$AnimatedSprite2D.play("FloatM")
-		print("ascending")
+		else:
+			$AnimatedSprite2D.play("FloatL")
+	elif(state == "Idle"):
+		if(size == 1):
+			$AnimatedSprite2D.play("IdleS")
+		elif(size == 2):
+			$AnimatedSprite2D.play("IdleM")
+		else:
+			$AnimatedSprite2D.play("IdleL")
+	elif(state == "Float"):
+		if(size == 1):
+			$AnimatedSprite2D.play("JumpS")
+		elif(size == 2):
+			$AnimatedSprite2D.play("JumpM")
+		else:
+			$AnimatedSprite2D.play("JumpL")
+	
+	

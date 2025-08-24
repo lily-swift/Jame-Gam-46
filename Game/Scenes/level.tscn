@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=36 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Texture2D" uid="uid://cqpk7jgeo8v5n" path="res://Art/smallbuildingplaceholder.png" id="2_wqkje"]
@@ -13,9 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://of564jsif2ol" path="res://Art/PlayerSprites/idle_balloon_md.png" id="11_3a44l"]
 [ext_resource type="Texture2D" uid="uid://bnyb2qcrubou5" path="res://Art/PlayerSprites/idle_balloon_sm.png" id="12_0cmrb"]
 [ext_resource type="Texture2D" uid="uid://msgtxrxjaajf" path="res://Art/PlayerSprites/crouch_body.png" id="13_2klc5"]
+[ext_resource type="Texture2D" uid="uid://8vriof6728pl" path="res://Art/PlayerSprites/jump_balloon_lg.png" id="13_3a44l"]
+[ext_resource type="Texture2D" uid="uid://boto8v7lyvk2u" path="res://Art/PlayerSprites/jump_balloon_md.png" id="14_0cmrb"]
 [ext_resource type="Texture2D" uid="uid://cbm3k5xi2r8cy" path="res://Art/PlayerSprites/floating_body.png" id="14_nngtn"]
+[ext_resource type="Texture2D" uid="uid://crvdtc37dtmoj" path="res://Art/PlayerSprites/jump_balloon_sm.png" id="15_pnhnk"]
 [ext_resource type="Texture2D" uid="uid://cyj5icrneeuhk" path="res://Art/PlayerSprites/idle_body.png" id="15_vofx3"]
 [ext_resource type="Texture2D" uid="uid://6fyds0bdk5rg" path="res://Art/PlayerSprites/inject_body_spritesheet.png" id="16_00k4y"]
+[ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="17_nngtn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
 animations = [{
@@ -120,6 +124,30 @@ animations = [{
 "loop": true,
 "name": &"IdleS",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_3a44l")
+}],
+"loop": true,
+"name": &"JumpL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_0cmrb")
+}],
+"loop": true,
+"name": &"JumpM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_pnhnk")
+}],
+"loop": true,
+"name": &"JumpS",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km5ld"]
@@ -166,7 +194,7 @@ animations = [{
 "texture": ExtResource("14_nngtn")
 }],
 "loop": true,
-"name": &"Float",
+"name": &"Fall",
 "speed": 5.0
 }, {
 "frames": [{
@@ -193,6 +221,14 @@ animations = [{
 "loop": true,
 "name": &"Injecting",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_nngtn")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2klc5"]
@@ -207,7 +243,7 @@ texture_filter = 1
 [node name="SmallBuilding" type="RigidBody2D" parent="."]
 position = Vector2(73, 58)
 collision_layer = 4
-collision_mask = 7
+collision_mask = 295
 mass = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SmallBuilding"]
@@ -230,26 +266,32 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding/RightEdge"]
 shape = SubResource("SegmentShape2D_i2t4f")
 
-[node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims")]
+[node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims", "groundDetector")]
+top_level = true
+texture_filter = 1
 position = Vector2(0, 5)
 collision_layer = 32
 collision_mask = 7
-gravity_scale = -0.5
+gravity_scale = -1.0
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, -5)
 angular_damp = 13.0
 script = ExtResource("4_wqkje")
+jumpCoolDown = 0.9
 virusBody = NodePath("../VirusBody")
 virusAnims = NodePath("../VirusBody/VirusAnims")
-jumpForce = 1100.0
-jumpDuration = 0.3
+groundDetector = NodePath("../VirusBody/Area2D")
+jumpForce = 1325.0
+jumpStartup = 0.05
+jumpDuration = 0.47
 moveSpeed = 200.0
 frictionX = 3.0
-frictionY = 0.5
+frictionY = 2.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Balloon"]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_n6hdu")
-animation = &"IdleS"
+animation = &"FloatL"
 offset = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Balloon"]
@@ -266,7 +308,7 @@ angular_limit_upper = 0.523599
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 80)
 collision_layer = 2
-collision_mask = 33
+collision_mask = 289
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_i2t4f")
@@ -278,7 +320,6 @@ position = Vector2(0, 7)
 collision_mask = 38
 mass = 2.3
 physics_material_override = SubResource("PhysicsMaterial_2klc5")
-gravity_scale = 0.5
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, 8)
 angular_damp = 2.0
@@ -300,7 +341,8 @@ target_position = Vector2(0, 3)
 
 [node name="VirusAnims" type="AnimatedSprite2D" parent="VirusBody"]
 sprite_frames = SubResource("SpriteFrames_gf56v")
-animation = &"Float"
+animation = &"Fall"
+speed_scale = 2.5
 
 [node name="NeckPillowRight" type="CollisionShape2D" parent="VirusBody"]
 position = Vector2(7, 3)
@@ -313,8 +355,11 @@ shape = SubResource("CircleShape2D_2klc5")
 [node name="Area2D" type="Area2D" parent="VirusBody"]
 collision_layer = 256
 collision_mask = 6
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VirusBody/Area2D"]
 position = Vector2(-5.20549e-07, 15)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_2klc5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
