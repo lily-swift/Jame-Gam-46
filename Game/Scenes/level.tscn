@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=55 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scenes/building.gd" id="1_u0did"]
@@ -30,6 +30,8 @@
 [ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scenes/soundtrack.gd" id="25_6y3s5"]
 [ext_resource type="Texture2D" uid="uid://c2nwcua3v03xr" path="res://Art/Buildings/alt office-export.png" id="28_1cgv8"]
 [ext_resource type="Texture2D" uid="uid://bgbdpnmhr0nvt" path="res://Art/Buildings/rubble4.png" id="29_hcs0j"]
+[ext_resource type="Texture2D" uid="uid://dmp2smyr2ojta" path="res://Art/Buildings/radiotower.png" id="31_idpk0"]
+[ext_resource type="Texture2D" uid="uid://26xw7cukul33" path="res://Art/Buildings/rubble1.png" id="32_dw52x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
 animations = [{
@@ -51,13 +53,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53r2q"]
-size = Vector2(16, 32)
+size = Vector2(17, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luodc"]
 size = Vector2(19, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cgv8"]
-size = Vector2(13, 29)
+size = Vector2(12, 29)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u0did"]
 animations = [{
@@ -266,6 +268,9 @@ radius = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2klc5"]
 size = Vector2(18, 34)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idpk0"]
+size = Vector2(4, 9)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_t205d"]
 animations = [{
 "frames": [{
@@ -301,6 +306,38 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ais7f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_idpk0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_re0q2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_dw52x")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"blank",
+"speed": 5.0
+}]
+
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
@@ -318,7 +355,7 @@ rubblePos = Vector2(8, 0)
 sprite_frames = SubResource("SpriteFrames_1ainy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouse"]
-position = Vector2(3, 0)
+position = Vector2(3.5, 0)
 shape = SubResource("RectangleShape2D_53r2q")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouse"]
@@ -326,7 +363,7 @@ position = Vector2(-14.5, 4.5)
 shape = SubResource("RectangleShape2D_luodc")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouse"]
-position = Vector2(17.5, 1.5)
+position = Vector2(18, 1.5)
 shape = SubResource("RectangleShape2D_1cgv8")
 
 [node name="Effects" type="AnimatedSprite2D" parent="ModernHouse"]
@@ -335,7 +372,7 @@ position = Vector2(8, 0)
 sprite_frames = SubResource("SpriteFrames_u0did")
 animation = &"Rubble"
 
-[node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims", "groundDetector")]
+[node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims", "virusDrillArea", "groundDetector")]
 top_level = true
 texture_filter = 1
 position = Vector2(0, 5)
@@ -349,6 +386,7 @@ script = ExtResource("4_wqkje")
 jumpCoolDown = 0.9
 virusBody = NodePath("../VirusBody")
 virusAnims = NodePath("../VirusBody/VirusAnims")
+virusDrillArea = NodePath("../VirusBody/InjectDetect")
 groundDetector = NodePath("../VirusBody/Area2D")
 jumpForce = 1325.0
 jumpStartup = 0.05
@@ -356,6 +394,7 @@ jumpDuration = 0.47
 moveSpeed = 250.0
 frictionX = 3.0
 frictionY = 2.0
+drillStartup = 0.15
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Balloon"]
 texture_filter = 1
@@ -376,6 +415,10 @@ angular_limit_upper = 0.523599
 
 [node name="InflateSFX" type="AudioStreamPlayer2D" parent="Balloon"]
 stream = ExtResource("16_24uko")
+
+[node name="LandSFX" type="AudioStreamPlayer2D" parent="Balloon"]
+position = Vector2(0, -7)
+stream = ExtResource("24_u0did")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 80)
@@ -406,21 +449,9 @@ angular_damp = 2.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VirusBody"]
 polygon = PackedVector2Array(8, 6, 14, 9, 16, 23, 11, 23, 5, 16, -5, 16, -11, 23, -16, 23, -14, 9, -8, 6)
 
-[node name="RCbottom" type="RayCast2D" parent="VirusBody"]
-position = Vector2(0, 20)
-target_position = Vector2(0, 7)
-
-[node name="RCbottomleft" type="RayCast2D" parent="VirusBody"]
-position = Vector2(-16, 22)
-target_position = Vector2(0, 3)
-
-[node name="RCbottomright" type="RayCast2D" parent="VirusBody"]
-position = Vector2(16, 22)
-target_position = Vector2(0, 3)
-
 [node name="VirusAnims" type="AnimatedSprite2D" parent="VirusBody"]
 sprite_frames = SubResource("SpriteFrames_gf56v")
-animation = &"Fall"
+animation = &"Injecting"
 speed_scale = 2.5
 
 [node name="NeckPillowRight" type="CollisionShape2D" parent="VirusBody"]
@@ -445,6 +476,14 @@ shape = SubResource("RectangleShape2D_2klc5")
 [node name="LandSFX" type="AudioStreamPlayer2D" parent="VirusBody/Area2D"]
 position = Vector2(0, -7)
 stream = ExtResource("24_u0did")
+
+[node name="InjectDetect" type="Area2D" parent="VirusBody"]
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VirusBody/InjectDetect"]
+position = Vector2(0, 20.5)
+shape = SubResource("RectangleShape2D_idpk0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_gf56v")
@@ -487,5 +526,28 @@ text = "2:00"
 [node name="Timer" type="Timer" parent="GameTimer"]
 wait_time = 10.0
 one_shot = true
+
+[node name="Radiotower" type="RigidBody2D" parent="."]
+position = Vector2(145, 20)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("1_u0did")
+size = 3
+height = 98.0
+rubblePos = Vector2(25, 34)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Radiotower"]
+sprite_frames = SubResource("SpriteFrames_ais7f")
+
+[node name="Effects" type="AnimatedSprite2D" parent="Radiotower"]
+z_index = -3
+position = Vector2(25, 34)
+sprite_frames = SubResource("SpriteFrames_re0q2")
+animation = &"Rubble"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Radiotower"]
+polygon = PackedVector2Array(-2, -41, 2, -41, 8, -20, 5, -15, 9, 50, -9, 50, -5, -15, -8, -20)
 
 [connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]

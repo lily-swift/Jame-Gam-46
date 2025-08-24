@@ -10,6 +10,7 @@ var jumpCDT : float = 1
 var jumpT : float = 0;
 @export var virusBody : RigidBody2D
 @export var virusAnims : AnimatedSprite2D
+@export var virusDrillArea : Area2D
 @export var groundDetector : Area2D
 var balloonInflationLevel : int = 1;
 @export var jumpForce : float = 1000;
@@ -20,8 +21,13 @@ var jumpELT : float = 0;
 @export var jumpDuration : float = 0.25
 @export var moveSpeed : float = 100;
 var upAnimTimer : float = -1;
-@export var frictionX : float = 1;
-@export var frictionY : float = 1;
+@export var frictionX : float = 1
+@export var frictionY : float = 1
+@export var drillCooldown : float = 0.5
+@export var drillStartup : float = 0.05
+var drillSUT : float = 0
+var drillCDT = 0;
+var building : Object
 
 var state : String = "Idle"
 var size : int = 2;
@@ -69,6 +75,23 @@ func timers(delta):
 		jumpELT -= delta
 		if(jumpELT <= 0):
 			size = 2
+	if(drillCDT > 0):
+		drillCDT -= delta
+	if(drillSUT > 0):
+		drillSUT -= delta
+		if(drillSUT <= 0):
+			startDrill()
+
+func startDrill():
+	if virusDrillArea.has_overlapping_bodies():
+		building = virusDrillArea.get_overlapping_bodies()[0]
+		print(building)
+		state = "Drill"
+	else:
+		state = "Idle"
+		$LandSFX.play()
+		drillCDT = drillCooldown
+	
 
 func jump():
 	#apply_central_impulse(jumpImpuse * Vector2(0,-1))
@@ -100,10 +123,23 @@ func _process(delta):
 	if(linear_velocity.y > 2 and state == "Float"):
 		state = "Fall"
 	
-	if(on_ground()):
+	if(on_ground() and (not jumpSUT  > 0) and (not jumpT > 0) and (not drillSUT > 0) and (not state == "Drill")):
 		state = "Idle"
 		if(jumpCDT <= 0):
 			jumpsLeft = jumps
+	
+	if state == "Idle" and Input.is_action_just_pressed("drill") and drillCDT <= 0:
+		drillSUT = drillStartup
+		state = "Crouch"
+		size = 2
+			
+	
+	if state == "Crouch" or state == "Drill":
+		freeze = true
+		virusBody.freeze = true
+	else:
+		freeze = false
+		virusBody.freeze = false
 	
 	if state == "Fall":
 		virusAnims.play("Fall")
@@ -111,6 +147,10 @@ func _process(delta):
 		virusAnims.play("Jump")
 	elif state == "Idle":
 		virusAnims.play("Idle")
+	elif state == "Crouch":
+		virusAnims.play("Crouch")
+	elif state == "Drill":
+		virusAnims.play("Injecting")
 	
 	#Jump
 	if jumpPressed and (jumpCDT <= 0) and jumpsLeft > 0:
@@ -147,5 +187,12 @@ func _process(delta):
 			$AnimatedSprite2D.play("JumpM")
 		else:
 			$AnimatedSprite2D.play("JumpL")
+	elif(state == "Crouch" or state == "Drill"):
+		if(size == 1):
+			$AnimatedSprite2D.play("CrouchS")
+		elif(size == 2):
+			$AnimatedSprite2D.play("CrouchM")
+		else:
+			$AnimatedSprite2D.play("CrouchL")
 	
 	
