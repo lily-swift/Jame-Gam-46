@@ -71,12 +71,13 @@ func timers(delta):
 			size = 2
 
 func jump():
-	print("jump")
 	#apply_central_impulse(jumpImpuse * Vector2(0,-1))
 	jumpCDT = jumpCoolDown
 	jumpSUT = jumpStartup
 	jumpsLeft -= 1
 	#jumpT = jumpDuration
+	$InflateSFX.pitch_scale = randf_range(0.95,1.05)
+	$InflateSFX.play()
 	
 
 func on_ground():
@@ -88,8 +89,6 @@ func _process(delta):
 	get_input()
 	timers(delta)
 	
-	print(state)
-	print(size)
 	
 	#states
 	if(linear_velocity.y < -4):

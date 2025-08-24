@@ -1,0 +1,415 @@
+[gd_scene load_steps=44 format=3 uid="uid://bw14fnsdi7bdq"]
+
+[ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
+[ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scenes/building.gd" id="1_u0did"]
+[ext_resource type="Texture2D" uid="uid://di4luiuepjuef" path="res://Art/Buildings/modernhouselol.png" id="2_6y3s5"]
+[ext_resource type="Texture2D" uid="uid://dq0mn3h2ynjuf" path="res://Art/Buildings/rubble3.png" id="4_luodc"]
+[ext_resource type="Texture2D" uid="uid://0sap0083y6i1" path="res://Art/PlayerSprites/crouch_balloon_lg.png" id="4_pa6b8"]
+[ext_resource type="Script" uid="uid://2fqyy1a65sm7" path="res://Scripts/playerController.gd" id="4_wqkje"]
+[ext_resource type="Texture2D" uid="uid://bt0uvuqy4pbvd" path="res://Art/PlayerSprites/crouch_balloon_md.png" id="5_crh0w"]
+[ext_resource type="Texture2D" uid="uid://bx6suy44iqbay" path="res://Art/PlayerSprites/crouch_balloon_sm.png" id="6_c7le1"]
+[ext_resource type="Texture2D" uid="uid://cly0yo53n3omr" path="res://Art/PlayerSprites/floating_balloon_lg.png" id="7_2klc5"]
+[ext_resource type="Texture2D" uid="uid://bs7p0mcbgrvlp" path="res://Art/PlayerSprites/floating_balloon_md.png" id="8_nngtn"]
+[ext_resource type="Texture2D" uid="uid://tu564ej0eaka" path="res://Art/PlayerSprites/floating_balloon_sm.png" id="9_vofx3"]
+[ext_resource type="Texture2D" uid="uid://dmvea5picug24" path="res://Art/PlayerSprites/idle_balloon_lg.png" id="10_00k4y"]
+[ext_resource type="Texture2D" uid="uid://of564jsif2ol" path="res://Art/PlayerSprites/idle_balloon_md.png" id="11_3a44l"]
+[ext_resource type="Texture2D" uid="uid://bnyb2qcrubou5" path="res://Art/PlayerSprites/idle_balloon_sm.png" id="12_0cmrb"]
+[ext_resource type="Texture2D" uid="uid://msgtxrxjaajf" path="res://Art/PlayerSprites/crouch_body.png" id="13_2klc5"]
+[ext_resource type="Texture2D" uid="uid://8vriof6728pl" path="res://Art/PlayerSprites/jump_balloon_lg.png" id="13_3a44l"]
+[ext_resource type="Texture2D" uid="uid://boto8v7lyvk2u" path="res://Art/PlayerSprites/jump_balloon_md.png" id="14_0cmrb"]
+[ext_resource type="Texture2D" uid="uid://cbm3k5xi2r8cy" path="res://Art/PlayerSprites/floating_body.png" id="14_nngtn"]
+[ext_resource type="Texture2D" uid="uid://crvdtc37dtmoj" path="res://Art/PlayerSprites/jump_balloon_sm.png" id="15_pnhnk"]
+[ext_resource type="Texture2D" uid="uid://cyj5icrneeuhk" path="res://Art/PlayerSprites/idle_body.png" id="15_vofx3"]
+[ext_resource type="Texture2D" uid="uid://6fyds0bdk5rg" path="res://Art/PlayerSprites/inject_body_spritesheet.png" id="16_00k4y"]
+[ext_resource type="AudioStream" uid="uid://dxf5kuc3qeqng" path="res://Sound/SFX_buttonHover.wav" id="16_24uko"]
+[ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="17_nngtn"]
+[ext_resource type="Script" uid="uid://b8k3rora2iv3f" path="res://Scenes/landeffects.gd" id="21_pnhnk"]
+[ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
+[ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
+[ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scenes/soundtrack.gd" id="25_6y3s5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_81xng")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6y3s5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53r2q"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_luodc"]
+size = Vector2(19, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cgv8"]
+size = Vector2(13, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u0did"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_luodc")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"blank",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6hdu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pa6b8")
+}],
+"loop": true,
+"name": &"CrouchL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_crh0w")
+}],
+"loop": true,
+"name": &"CrouchM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_c7le1")
+}],
+"loop": true,
+"name": &"CrouchS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2klc5")
+}],
+"loop": true,
+"name": &"FloatL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_nngtn")
+}],
+"loop": true,
+"name": &"FloatM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_vofx3")
+}],
+"loop": true,
+"name": &"FloatS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_00k4y")
+}],
+"loop": true,
+"name": &"IdleL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_3a44l")
+}],
+"loop": true,
+"name": &"IdleM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_0cmrb")
+}],
+"loop": true,
+"name": &"IdleS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_3a44l")
+}],
+"loop": true,
+"name": &"JumpL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_0cmrb")
+}],
+"loop": true,
+"name": &"JumpM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_pnhnk")
+}],
+"loop": true,
+"name": &"JumpS",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km5ld"]
+radius = 7.5
+height = 16.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2t4f"]
+size = Vector2(320, 20)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2klc5"]
+friction = 2.0
+rough = true
+bounce = 0.2
+absorbent = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a44l"]
+atlas = ExtResource("16_00k4y")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cmrb"]
+atlas = ExtResource("16_00k4y")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnhnk"]
+atlas = ExtResource("16_00k4y")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24uko"]
+atlas = ExtResource("16_00k4y")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gf56v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_2klc5")
+}],
+"loop": true,
+"name": &"Crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_nngtn")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_vofx3")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a44l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cmrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnhnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24uko")
+}],
+"loop": true,
+"name": &"Injecting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_nngtn")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2klc5"]
+radius = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2klc5"]
+size = Vector2(18, 34)
+
+[node name="Level" type="Node2D"]
+texture_filter = 1
+
+[node name="SmallBuilding" type="RigidBody2D" parent="."]
+position = Vector2(74, 54)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+script = ExtResource("1_u0did")
+height = 32.0
+rubblePos = Vector2(8, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SmallBuilding"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding"]
+position = Vector2(3, 0)
+shape = SubResource("RectangleShape2D_53r2q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SmallBuilding"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="SmallBuilding"]
+position = Vector2(17.5, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Effects" type="AnimatedSprite2D" parent="SmallBuilding"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
+
+[node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims", "groundDetector")]
+top_level = true
+texture_filter = 1
+position = Vector2(0, 5)
+collision_layer = 32
+collision_mask = 7
+gravity_scale = -1.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, -5)
+angular_damp = 13.0
+script = ExtResource("4_wqkje")
+jumpCoolDown = 0.9
+virusBody = NodePath("../VirusBody")
+virusAnims = NodePath("../VirusBody/VirusAnims")
+groundDetector = NodePath("../VirusBody/Area2D")
+jumpForce = 1325.0
+jumpStartup = 0.05
+jumpDuration = 0.47
+moveSpeed = 250.0
+frictionX = 3.0
+frictionY = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Balloon"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_n6hdu")
+animation = &"FloatL"
+offset = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Balloon"]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_km5ld")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Balloon"]
+node_a = NodePath("..")
+node_b = NodePath("../../VirusBody")
+disable_collision = false
+angular_limit_lower = -0.523599
+angular_limit_upper = 0.523599
+
+[node name="InflateSFX" type="AudioStreamPlayer2D" parent="Balloon"]
+stream = ExtResource("16_24uko")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 80)
+collision_layer = 2
+collision_mask = 289
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_i2t4f")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -160.0
+offset_top = -10.0
+offset_right = 160.0
+offset_bottom = 10.0
+color = Color(0.509286, 0.509286, 0.509286, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="VirusBody" type="RigidBody2D" parent="."]
+position = Vector2(0, 7)
+collision_mask = 38
+mass = 2.3
+physics_material_override = SubResource("PhysicsMaterial_2klc5")
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, 8)
+angular_damp = 2.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VirusBody"]
+polygon = PackedVector2Array(8, 6, 14, 9, 16, 23, 11, 23, 5, 16, -5, 16, -11, 23, -16, 23, -14, 9, -8, 6)
+
+[node name="RCbottom" type="RayCast2D" parent="VirusBody"]
+position = Vector2(0, 20)
+target_position = Vector2(0, 7)
+
+[node name="RCbottomleft" type="RayCast2D" parent="VirusBody"]
+position = Vector2(-16, 22)
+target_position = Vector2(0, 3)
+
+[node name="RCbottomright" type="RayCast2D" parent="VirusBody"]
+position = Vector2(16, 22)
+target_position = Vector2(0, 3)
+
+[node name="VirusAnims" type="AnimatedSprite2D" parent="VirusBody"]
+sprite_frames = SubResource("SpriteFrames_gf56v")
+animation = &"Fall"
+speed_scale = 2.5
+
+[node name="NeckPillowRight" type="CollisionShape2D" parent="VirusBody"]
+position = Vector2(7, 3)
+shape = SubResource("CircleShape2D_2klc5")
+
+[node name="NeckPillowLeft" type="CollisionShape2D" parent="VirusBody"]
+position = Vector2(-7, 3)
+shape = SubResource("CircleShape2D_2klc5")
+
+[node name="Area2D" type="Area2D" parent="VirusBody"]
+collision_layer = 256
+collision_mask = 6
+input_pickable = false
+script = ExtResource("21_pnhnk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VirusBody/Area2D"]
+position = Vector2(-5.20549e-07, 15)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_2klc5")
+
+[node name="LandSFX" type="AudioStreamPlayer2D" parent="VirusBody/Area2D"]
+position = Vector2(0, -7)
+stream = ExtResource("24_u0did")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_gf56v")
+volume_db = -10.0
+script = ExtResource("25_6y3s5")
+
+[connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]

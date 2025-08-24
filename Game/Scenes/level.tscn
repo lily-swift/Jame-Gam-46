@@ -1,7 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=49 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
-[ext_resource type="Texture2D" uid="uid://cqpk7jgeo8v5n" path="res://Art/smallbuildingplaceholder.png" id="2_wqkje"]
+[ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scenes/building.gd" id="1_u0did"]
+[ext_resource type="Texture2D" uid="uid://di4luiuepjuef" path="res://Art/Buildings/modernhouselol.png" id="2_6y3s5"]
+[ext_resource type="Texture2D" uid="uid://dq0mn3h2ynjuf" path="res://Art/Buildings/rubble3.png" id="4_luodc"]
 [ext_resource type="Texture2D" uid="uid://0sap0083y6i1" path="res://Art/PlayerSprites/crouch_balloon_lg.png" id="4_pa6b8"]
 [ext_resource type="Script" uid="uid://2fqyy1a65sm7" path="res://Scripts/playerController.gd" id="4_wqkje"]
 [ext_resource type="Texture2D" uid="uid://bt0uvuqy4pbvd" path="res://Art/PlayerSprites/crouch_balloon_md.png" id="5_crh0w"]
@@ -19,7 +21,14 @@
 [ext_resource type="Texture2D" uid="uid://crvdtc37dtmoj" path="res://Art/PlayerSprites/jump_balloon_sm.png" id="15_pnhnk"]
 [ext_resource type="Texture2D" uid="uid://cyj5icrneeuhk" path="res://Art/PlayerSprites/idle_body.png" id="15_vofx3"]
 [ext_resource type="Texture2D" uid="uid://6fyds0bdk5rg" path="res://Art/PlayerSprites/inject_body_spritesheet.png" id="16_00k4y"]
+[ext_resource type="AudioStream" uid="uid://dxf5kuc3qeqng" path="res://Sound/SFX_buttonHover.wav" id="16_24uko"]
 [ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="17_nngtn"]
+[ext_resource type="Script" uid="uid://b8k3rora2iv3f" path="res://Scenes/landeffects.gd" id="21_pnhnk"]
+[ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
+[ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
+[ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scenes/soundtrack.gd" id="25_6y3s5"]
+[ext_resource type="Texture2D" uid="uid://c2nwcua3v03xr" path="res://Art/Buildings/alt office-export.png" id="28_1cgv8"]
+[ext_resource type="Texture2D" uid="uid://bgbdpnmhr0nvt" path="res://Art/Buildings/rubble4.png" id="29_hcs0j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
 animations = [{
@@ -33,23 +42,42 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_wqkje")
+"texture": ExtResource("2_6y3s5")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6hdu"]
-size = Vector2(48, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53r2q"]
+size = Vector2(16, 32)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_km5ld"]
-a = Vector2(-24, -16)
-b = Vector2(-24, -55)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_luodc"]
+size = Vector2(19, 23)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_i2t4f"]
-a = Vector2(24, -16)
-b = Vector2(24, -55)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cgv8"]
+size = Vector2(13, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u0did"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_luodc")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"blank",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6hdu"]
 animations = [{
@@ -237,34 +265,74 @@ radius = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2klc5"]
 size = Vector2(18, 34)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_t205d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_1cgv8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcs0j"]
+size = Vector2(64, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idpk0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_hcs0j")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"blank",
+"speed": 5.0
+}]
+
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
-[node name="SmallBuilding" type="RigidBody2D" parent="."]
-position = Vector2(73, 58)
+[node name="ModernHouse" type="RigidBody2D" parent="."]
+position = Vector2(88, 54)
 collision_layer = 4
 collision_mask = 295
 mass = 1000.0
+freeze_mode = 1
+script = ExtResource("1_u0did")
+height = 32.0
+rubblePos = Vector2(8, 0)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SmallBuilding"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ModernHouse"]
 sprite_frames = SubResource("SpriteFrames_1ainy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding"]
-shape = SubResource("RectangleShape2D_n6hdu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouse"]
+position = Vector2(3, 0)
+shape = SubResource("RectangleShape2D_53r2q")
 
-[node name="LeftEdge" type="Area2D" parent="SmallBuilding"]
-visible = false
-collision_layer = 8
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouse"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding/LeftEdge"]
-shape = SubResource("SegmentShape2D_km5ld")
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouse"]
+position = Vector2(17.5, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
 
-[node name="RightEdge" type="Area2D" parent="SmallBuilding"]
-visible = false
-collision_layer = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallBuilding/RightEdge"]
-shape = SubResource("SegmentShape2D_i2t4f")
+[node name="Effects" type="AnimatedSprite2D" parent="ModernHouse"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
 
 [node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims", "groundDetector")]
 top_level = true
@@ -284,7 +352,7 @@ groundDetector = NodePath("../VirusBody/Area2D")
 jumpForce = 1325.0
 jumpStartup = 0.05
 jumpDuration = 0.47
-moveSpeed = 200.0
+moveSpeed = 250.0
 frictionX = 3.0
 frictionY = 2.0
 
@@ -305,6 +373,9 @@ disable_collision = false
 angular_limit_lower = -0.523599
 angular_limit_upper = 0.523599
 
+[node name="InflateSFX" type="AudioStreamPlayer2D" parent="Balloon"]
+stream = ExtResource("16_24uko")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 80)
 collision_layer = 2
@@ -312,6 +383,13 @@ collision_mask = 289
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_i2t4f")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -160.0
+offset_top = -10.0
+offset_right = 160.0
+offset_bottom = 10.0
+color = Color(0.509286, 0.509286, 0.509286, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -356,10 +434,43 @@ shape = SubResource("CircleShape2D_2klc5")
 collision_layer = 256
 collision_mask = 6
 input_pickable = false
+script = ExtResource("21_pnhnk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VirusBody/Area2D"]
 position = Vector2(-5.20549e-07, 15)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_2klc5")
 
+[node name="LandSFX" type="AudioStreamPlayer2D" parent="VirusBody/Area2D"]
+position = Vector2(0, -7)
+stream = ExtResource("24_u0did")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_gf56v")
+volume_db = -10.0
+script = ExtResource("25_6y3s5")
+
+[node name="Office" type="RigidBody2D" parent="."]
+position = Vector2(-97, 30)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("1_u0did")
+size = 3
+height = 80.0
+rubblePos = Vector2(0, 24)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Office"]
+sprite_frames = SubResource("SpriteFrames_t205d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Office"]
+shape = SubResource("RectangleShape2D_hcs0j")
+
+[node name="Effects" type="AnimatedSprite2D" parent="Office"]
+z_index = -3
+position = Vector2(0, 24)
+sprite_frames = SubResource("SpriteFrames_idpk0")
+animation = &"Rubble"
+
+[connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]
