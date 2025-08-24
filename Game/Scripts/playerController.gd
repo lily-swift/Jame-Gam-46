@@ -10,6 +10,8 @@ var jumpT : float = 0;
 @export var virusAnims : AnimatedSprite2D
 var balloonInflationLevel : int = 1;
 @export var jumpForce : float = 1000;
+@export var jumpStartup : float = 0.1;
+@export var jumpEndLag : float = 0.1; 
 @export var jumpDuration : float = 0.25
 @export var moveSpeed : float = 100;
 var upAnimTimer : float = -1;
@@ -19,6 +21,17 @@ var upAnimTimer : float = -1;
 var state : String = "Idle"
 
 var rot : float = 0;
+
+func _physics_process(delta):
+	if(jumpT > 0):
+		apply_central_force(Vector2(0,-1) * jumpForce)
+		if(linear_velocity.y > 0):
+			jumpT += delta/2
+			apply_central_force(linear_velocity * (-1) * Vector2(0,3))
+	
+	apply_central_force(Vector2(1,0) * input_directionW * moveSpeed)
+	apply_central_force(linear_velocity * (-1) * Vector2(frictionX,frictionY))
+	
 
 func _ready():
 	$AnimatedSprite2D.play("IdleM");
@@ -75,9 +88,6 @@ func _process(delta):
 	
 	if(jumpT > 0):
 		apply_central_force(Vector2(0,-1) * jumpForce)
-		if(linear_velocity.y > 0):
-			jumpT += delta/2
-			apply_central_force(linear_velocity * (-1) * Vector2(0,3))
 		if(state == "Fall"):
 			$AnimatedSprite2D.play("IdleL")
 		if(state == "Float"):
@@ -87,8 +97,4 @@ func _process(delta):
 			$AnimatedSprite2D.play("IdleM")
 		if(state == "Float"):
 			$AnimatedSprite2D.play("FloatM")
-		
 		print("ascending")
-		
-	apply_central_force(Vector2(1,0) * input_directionW * moveSpeed)
-	apply_central_force(linear_velocity * (-1) * Vector2(frictionX,frictionY))

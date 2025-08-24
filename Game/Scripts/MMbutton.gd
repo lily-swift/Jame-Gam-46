@@ -26,4 +26,4 @@ func _credits_pressed():
 	pass
 
 func _exit_pressed():
-	pass
+	get_tree().quit()
