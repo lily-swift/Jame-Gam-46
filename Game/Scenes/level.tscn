@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=59 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scenes/building.gd" id="1_u0did"]
@@ -28,10 +28,13 @@
 [ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
 [ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
 [ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scenes/soundtrack.gd" id="25_6y3s5"]
+[ext_resource type="Script" uid="uid://du68t62m3wpjg" path="res://Scenes/camera_2d.gd" id="26_re0q2"]
 [ext_resource type="Texture2D" uid="uid://c2nwcua3v03xr" path="res://Art/Buildings/alt office-export.png" id="28_1cgv8"]
 [ext_resource type="Texture2D" uid="uid://bgbdpnmhr0nvt" path="res://Art/Buildings/rubble4.png" id="29_hcs0j"]
+[ext_resource type="FontFile" uid="uid://dswbhi82jmbe" path="res://m5x7.ttf" id="31_dw52x"]
 [ext_resource type="Texture2D" uid="uid://dmp2smyr2ojta" path="res://Art/Buildings/radiotower.png" id="31_idpk0"]
 [ext_resource type="Texture2D" uid="uid://26xw7cukul33" path="res://Art/Buildings/rubble1.png" id="32_dw52x"]
+[ext_resource type="Texture2D" uid="uid://p7hxh88ac52e" path="res://Background1.png" id="34_ais7f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
 animations = [{
@@ -184,6 +187,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km5ld"]
 radius = 7.5
 height = 16.5
+
+[sub_resource type="Theme" id="Theme_ais7f"]
+Label/fonts/font = ExtResource("31_dw52x")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2t4f"]
 size = Vector2(320, 20)
@@ -420,6 +426,29 @@ stream = ExtResource("16_24uko")
 position = Vector2(0, -7)
 stream = ExtResource("24_u0did")
 
+[node name="Node" type="Node" parent="Balloon"]
+
+[node name="Camera2D" type="Camera2D" parent="Balloon/Node" node_paths=PackedStringArray("parent")]
+position = Vector2(0, -10)
+script = ExtResource("26_re0q2")
+parent = NodePath("../..")
+
+[node name="GameTimer" type="Node" parent="Balloon/Node/Camera2D"]
+script = ExtResource("21_0cmrb")
+
+[node name="Label" type="Label" parent="Balloon/Node/Camera2D/GameTimer"]
+texture_filter = 1
+offset_left = -149.0
+offset_top = -83.0
+offset_right = -95.0
+offset_bottom = -60.0
+theme = SubResource("Theme_ais7f")
+text = "2:00"
+
+[node name="Timer" type="Timer" parent="Balloon/Node/Camera2D/GameTimer"]
+wait_time = 45.0
+one_shot = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 80)
 collision_layer = 2
@@ -434,8 +463,6 @@ offset_top = -10.0
 offset_right = 160.0
 offset_bottom = 10.0
 color = Color(0.509286, 0.509286, 0.509286, 1)
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="VirusBody" type="RigidBody2D" parent="."]
 position = Vector2(0, 7)
@@ -513,20 +540,6 @@ position = Vector2(0, 24)
 sprite_frames = SubResource("SpriteFrames_idpk0")
 animation = &"Rubble"
 
-[node name="GameTimer" type="Node" parent="."]
-script = ExtResource("21_0cmrb")
-
-[node name="Label" type="Label" parent="GameTimer"]
-offset_left = -149.0
-offset_top = -83.0
-offset_right = -95.0
-offset_bottom = -60.0
-text = "2:00"
-
-[node name="Timer" type="Timer" parent="GameTimer"]
-wait_time = 10.0
-one_shot = true
-
 [node name="Radiotower" type="RigidBody2D" parent="."]
 position = Vector2(145, 20)
 collision_layer = 4
@@ -549,5 +562,13 @@ animation = &"Rubble"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Radiotower"]
 polygon = PackedVector2Array(-2, -41, 2, -41, 8, -20, 5, -15, 9, 50, -9, 50, -5, -15, -8, -20)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-10, -113)
+texture = ExtResource("34_ais7f")
 
 [connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]
