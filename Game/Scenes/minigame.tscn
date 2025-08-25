@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://dil3jigsgqdce"]
+
+[ext_resource type="Script" uid="uid://dj7k8ccyxjwm4" path="res://Scripts/minigame.gd" id="1_255i5"]
+[ext_resource type="Texture2D" uid="uid://cyp65uswy6fpn" path="res://Art/Minigame/inject_ui_border.png" id="2_xcq3l"]
+[ext_resource type="Texture2D" uid="uid://bmud2g03j3cxp" path="res://Art/Minigame/inject_ui_bg.png" id="3_vnlq7"]
+[ext_resource type="Texture2D" uid="uid://b5cafsck0jg1b" path="res://Art/Minigame/inject_ui_injector.png" id="4_hr1fu"]
+[ext_resource type="Shader" uid="uid://bwgeqbipqcx1m" path="res://Scenes/mask_shader.gdshader" id="5_eicgb"]
+[ext_resource type="Texture2D" uid="uid://bojaxmk520ruo" path="res://Art/whiteSquare.png" id="6_puep3"]
+[ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="7_pg0ql"]
+[ext_resource type="AudioStream" uid="uid://8h0itw8682mq" path="res://Sound/SFX_injectSuccessJingle.wav" id="8_ohqu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2jr1"]
+size = Vector2(24, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruoab"]
+size = Vector2(24, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwbs2"]
+shader = ExtResource("5_eicgb")
+
+[node name="Minigame" type="Node2D"]
+script = ExtResource("1_255i5")
+startDelay = 2.0
+cursorSpeed = 20.0
+winBarCount = 2
+winBarPixelHeight = 2
+
+[node name="MinigameBackground" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_xcq3l")
+
+[node name="MinigameBar" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_vnlq7")
+
+[node name="Area2D" type="Area2D" parent="MinigameBar"]
+position = Vector2(0, 25)
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinigameBar/Area2D"]
+shape = SubResource("RectangleShape2D_c2jr1")
+disabled = true
+
+[node name="MinigameCursor" type="RigidBody2D" parent="."]
+position = Vector2(0, -47)
+collision_layer = 524288
+collision_mask = 524288
+mass = 0.001
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinigameCursor"]
+position = Vector2(0, 25)
+shape = SubResource("RectangleShape2D_ruoab")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="MinigameCursor"]
+copy_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MinigameCursor/BackBufferCopy"]
+texture_filter = 1
+texture = ExtResource("4_hr1fu")
+
+[node name="Node" type="Node" parent="MinigameCursor/BackBufferCopy"]
+
+[node name="Mask" type="Sprite2D" parent="MinigameCursor/BackBufferCopy/Node"]
+material = SubResource("ShaderMaterial_iwbs2")
+position = Vector2(48, 28.5)
+scale = Vector2(1, 3.3125)
+texture = ExtResource("6_puep3")
+
+[node name="InjectPulseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_pg0ql")
+
+[node name="MinigameWinJingle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ohqu1")

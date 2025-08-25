@@ -13,6 +13,8 @@ script = ExtResource("2_5dwvq")
 
 [node name="Area2D" type="Area2D" parent="."]
 disable_mode = 2
+collision_layer = 524288
+collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_i0hkm")
