@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=63 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scenes/building.gd" id="1_u0did"]
@@ -37,7 +37,6 @@
 [ext_resource type="Material" uid="uid://c2312lyotbrp4" path="res://Scenes/transform.tres" id="31_nkhef"]
 [ext_resource type="Texture2D" uid="uid://26xw7cukul33" path="res://Art/Buildings/rubble1.png" id="32_dw52x"]
 [ext_resource type="Texture2D" uid="uid://bbxrqdghncmxp" path="res://Art/Buildings/radiotowerblue.png" id="34_fq0f7"]
-[ext_resource type="Script" path="res://Scenes/askdhbasdfsd.gd" id="34_nkhef"]
 [ext_resource type="Texture2D" uid="uid://13cu1oi0tyb0" path="res://Backgrounddownscales.png" id="36_fq0f7"]
 [ext_resource type="Script" uid="uid://dorf35sjksvv2" path="res://Scenes/snap.gd" id="37_bp4cd"]
 
@@ -583,7 +582,6 @@ injectPoint = NodePath("../VirusBody/InjectTip")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Office"]
 material = ExtResource("31_nkhef")
 sprite_frames = SubResource("SpriteFrames_t205d")
-script = ExtResource("34_nkhef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Office"]
 shape = SubResource("RectangleShape2D_hcs0j")
