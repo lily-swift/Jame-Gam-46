@@ -31,8 +31,9 @@ var building : Object
 
 var state : String = "Idle"
 var size : int = 2;
-
 var rot : float = 0;
+
+signal startMinigame(pos : Vector2, difficulty : int)
 
 func _physics_process(delta):
 	if(jumpT > 0):
@@ -87,6 +88,7 @@ func startDrill():
 		building = virusDrillArea.get_overlapping_bodies()[0]
 		print(building)
 		state = "Drill"
+		startMinigame.emit(position, building.size)
 	else:
 		state = "Idle"
 		$LandSFX.play()
