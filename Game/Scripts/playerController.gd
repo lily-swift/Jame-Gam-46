@@ -187,12 +187,14 @@ func _process(delta):
 			$AnimatedSprite2D.play("JumpM")
 		else:
 			$AnimatedSprite2D.play("JumpL")
-	elif(state == "Crouch" or state == "Drill"):
+	elif(state == "Crouch"):
 		if(size == 1):
 			$AnimatedSprite2D.play("CrouchS")
 		elif(size == 2):
 			$AnimatedSprite2D.play("CrouchM")
 		else:
 			$AnimatedSprite2D.play("CrouchL")
+	elif state == "Drill":
+		$AnimatedSprite2D.play("Drill")
 	
 	

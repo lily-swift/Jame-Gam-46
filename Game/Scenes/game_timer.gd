@@ -15,7 +15,7 @@ func time_left():
 	var second = int(time_left) % 60
 	return [minute, second]
 	
-func _process(delta):	
+func _process(delta):
 	label.text = "%02d:%02d" % time_left()
 	if time_left() == [0.0,0]:
 		pass
