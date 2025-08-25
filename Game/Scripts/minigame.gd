@@ -25,7 +25,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not isActive:
-		#print("Cursor velocity", cursorRigidBody2D.linear_velocity)
 		return
 		
 	if startTimer > 0:
@@ -37,7 +36,6 @@ func _process(delta: float) -> void:
 			print("Minigame win!")
 		print("Minigame finished!")
 		Reset()
-		Hide()
 		return
 	cursorRigidBody2D.linear_velocity = Vector2(0, cursorSpeed)
 
@@ -68,9 +66,6 @@ func Reset() -> void:
 		bar.queue_free()
 	winBarDict.clear()
 
-func Hide() -> void:
-	pass
-
 func IsOverlap(pos : Vector2) -> bool:
 	for barPos in winBarDict.values():
 		if pos.distance_to(barPos) <= winBarPixelHeight + 1:
@@ -78,7 +73,7 @@ func IsOverlap(pos : Vector2) -> bool:
 	return false
 
 ## For debugging purposes
-func _input(event) -> void:
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_L:
-			Start()
+#func _input(event) -> void:
+#	if event is InputEventKey:
+#		if event.pressed and event.keycode == KEY_L:
+#			Start()
