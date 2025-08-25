@@ -22,7 +22,7 @@ metadata/_edit_vertical_guides_ = [-13.0]
 [node name="Minigame" type="Node2D" parent="."]
 position = Vector2(48, 79)
 script = ExtResource("1_ruoab")
-startTimer = 1.0
+startDelay = 2.0
 cursorSpeed = 20.0
 winBarCount = 2
 winBarPixelHeight = 2
