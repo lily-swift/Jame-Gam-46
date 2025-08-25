@@ -2,9 +2,9 @@ extends Node2D
 
 @onready var injectPulseSFX : AudioStreamPlayer = $InjectPulseSFX
 @onready var minigameWinJingle: AudioStreamPlayer = $MinigameWinJingle
-@onready var minigameFinishArea2D : Area2D = $MinigameBar/Area2D
-@onready var cursorCollisionShape : CollisionShape2D = $MinigameCursor/CollisionShape2D
-@onready var cursorRigidBody2D : RigidBody2D = $MinigameCursor
+@onready var minigameFinishArea2D : Area2D = $Minigame_Bar/Area2D
+@onready var cursorCollisionShape : CollisionShape2D = $Minigame_Cursor/CollisionShape2D
+@onready var cursorRigidBody2D : RigidBody2D = $Minigame_Cursor
 
 @export var startDelay : float
 @export var cursorSpeed : float

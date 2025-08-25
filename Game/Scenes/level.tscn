@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=74 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scenes/building.gd" id="1_u0did"]
@@ -45,6 +45,8 @@
 [ext_resource type="Texture2D" uid="uid://bbxrqdghncmxp" path="res://Art/Buildings/radiotowerblue.png" id="34_fq0f7"]
 [ext_resource type="Texture2D" uid="uid://13cu1oi0tyb0" path="res://Backgrounddownscales.png" id="36_fq0f7"]
 [ext_resource type="Script" uid="uid://dorf35sjksvv2" path="res://Scenes/snap.gd" id="37_bp4cd"]
+[ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="46_l1uqm"]
+[ext_resource type="AudioStream" uid="uid://8h0itw8682mq" path="res://Sound/SFX_injectSuccessJingle.wav" id="47_gx30c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
 animations = [{
@@ -684,6 +686,12 @@ material = SubResource("ShaderMaterial_dx6so")
 position = Vector2(0, -55.5)
 scale = Vector2(1, 3.3125)
 texture = ExtResource("28_s14gf")
+
+[node name="InjectPulseSFX" type="AudioStreamPlayer" parent="Minigame"]
+stream = ExtResource("46_l1uqm")
+
+[node name="MinigameWinJingle" type="AudioStreamPlayer" parent="Minigame"]
+stream = ExtResource("47_gx30c")
 
 [connection signal="startMinigame" from="Balloon" to="Minigame" method="_on_balloon_start_minigame"]
 [connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]
