@@ -3,19 +3,20 @@ extends Node2D
 @onready var injectPulseSFX : AudioStreamPlayer = $InjectPulseSFX
 @onready var minigameWinJingle: AudioStreamPlayer = $MinigameWinJingle
 @onready var minigameFinishArea2D : Area2D = $MinigameBar/Area2D
-@onready var cursorCollisionShape : CollisionShape2D = $MinigameCursor/CollisionShape2D
-@onready var cursorRigidBody2D : RigidBody2D = $MinigameCursor
+@onready var plungerCollisionShape : CollisionShape2D = $MinigamePlunger/CollisionShape2D
+@onready var plungerRigidBody2D : RigidBody2D = $MinigamePlunger
 
 @export var startDelay : float
-@export var cursorSpeed : float
+@export var plungerSpeed : float
 @export var winBarCount : int
 @export var winBarPixelHeight : int
 @export var offset : Vector2 
 
-var initCursorPosition : Vector2
+var initPlungerPosition : Vector2
 var winBarDict : Dictionary
 var isActive : bool = false
 var startTimer : float
+var beginMoving : bool = false
 
 var winBarRef = preload("res://Scenes/minigame_win_bar.tscn")
 
@@ -23,6 +24,10 @@ var winBarRef = preload("res://Scenes/minigame_win_bar.tscn")
 func _ready() -> void:
 	##hide()
 	pass
+
+func _physics_process(delta: float) -> void:
+	if beginMoving:
+		plungerRigidBody2D.linear_velocity = Vector2(0, plungerSpeed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -32,8 +37,9 @@ func _process(delta: float) -> void:
 	if startTimer > 0:
 		startTimer -= delta
 		return
-	cursorRigidBody2D.linear_velocity = Vector2(0, cursorSpeed)
-	if cursorCollisionShape.global_position.y >= minigameFinishArea2D.global_position.y:
+	beginMoving = true
+	
+	if plungerCollisionShape.global_position.y >= minigameFinishArea2D.global_position.y:
 		if winBarDict.size() == 0:	## Minigame win
 			Win()
 		else:
@@ -53,8 +59,9 @@ func _on_balloon_start_minigame(pos, difficulty):
 	Start()
 
 func Start() -> void:
+	position = Vector2(238, 42)
 	isActive = true
-	initCursorPosition = cursorRigidBody2D.position
+	initPlungerPosition = plungerRigidBody2D.position
 	startTimer = startDelay
 	
 	for i in range(winBarCount):
@@ -72,8 +79,9 @@ func Start() -> void:
 
 func Reset() -> void:
 	isActive = false
-	cursorRigidBody2D.linear_velocity = Vector2(0,0)
-	cursorRigidBody2D.position = initCursorPosition
+	beginMoving = false
+	plungerRigidBody2D.linear_velocity = Vector2(0,0)
+	plungerRigidBody2D.position = initPlungerPosition
 	print("RESET!")
 	for bar in winBarDict.keys():
 		bar.queue_free()
