@@ -37,7 +37,7 @@
 [ext_resource type="Material" uid="uid://c2312lyotbrp4" path="res://Scenes/transform.tres" id="31_nkhef"]
 [ext_resource type="Texture2D" uid="uid://26xw7cukul33" path="res://Art/Buildings/rubble1.png" id="32_dw52x"]
 [ext_resource type="Texture2D" uid="uid://bbxrqdghncmxp" path="res://Art/Buildings/radiotowerblue.png" id="34_fq0f7"]
-[ext_resource type="Script" path="res://Scenes/askdhbasdfsd.gd" id="34_nkhef"]
+[ext_resource type="Script" uid="uid://b2a4hn5hko00k" path="res://Scenes/askdhbasdfsd.gd" id="34_nkhef"]
 [ext_resource type="Texture2D" uid="uid://13cu1oi0tyb0" path="res://Backgrounddownscales.png" id="36_fq0f7"]
 [ext_resource type="Script" uid="uid://dorf35sjksvv2" path="res://Scenes/snap.gd" id="37_bp4cd"]
 
@@ -577,7 +577,6 @@ size = 3
 height = 80.0
 width = 64.0
 rubblePos = Vector2(0, 24)
-shader = ExtResource("31_nkhef")
 injectPoint = NodePath("../VirusBody/InjectTip")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Office"]

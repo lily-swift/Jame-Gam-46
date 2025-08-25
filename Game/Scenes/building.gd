@@ -2,10 +2,16 @@ extends RigidBody2D
 @export var size : int = 2
 @export var crumbleSpeed : float = 0.5
 @export var height : float
+@export var width : float
 @export var rubblePos : Vector2
+@export var bubbleSpeed : float = 1
+@export var shader : ShaderMaterial
 var crumbleProgress : float = 0
 var crumbling : bool = false
+var bubbled : bool = false
 var startpos : Vector2
+@export var injectPoint : Node2D
+var bubbleProgress : float
 
 func _ready():
 	$AnimatedSprite2D.play("default")
@@ -16,15 +22,35 @@ func _ready():
 	z_index = -1
 	
 
-func balloon():
-	$AnimatedSprite2D.play("balloon")
-	mass = 2
-	gravity_scale = -0.5
+func bubble():
+	if not bubbled:
+		bubbled = true
+		#$AnimatedSprite2D.play("balloon")
+		$Effects.play("balloon")
+		$Effects.show()
+		print("ballloooon")
+		#print($AnimatedSprite2D.g)
+		#$AnimatedSprite2D.set_instance_shader_parameter("enabled",true)
+		
+		var adjustedInjectPoint = injectPoint.global_position - position + Vector2(width,height)/2
+		shader.set_shader_parameter("injectPoint", adjustedInjectPoint)
+		shader.set_shader_parameter("sizeX",width)
+		shader.set_shader_parameter("sizeY",height)
+		#$AnimatedSprite2D.set_instance_shader_parameter("injectPoint", adjustedInjectPoint)
+		print(adjustedInjectPoint)
+		#$AnimatedSprite2D.set_instance_shader_parameter("sizeX",width)
+		#$AnimatedSprite2D.set_instance_shader_parameter("sizeY",height)
+		mass = 4
+		gravity_scale = -0.25
 	
 func _process(delta):
-	if(Input.is_action_just_pressed("debug")):
-		rubble()
+	if(Input.is_action_just_pressed("debug") and visible):
+		bubble()
 	
+	if(bubbled and bubbleProgress < 1):
+		bubbleProgress += delta * bubbleSpeed
+		#$AnimatedSprite2D.set_instance_shader_parameter("progress",bubbleProgress)
+		shader.set_shader_parameter("progress", bubbleProgress)
 	if(crumbling):
 		position = startpos + Vector2(0,round(crumbleProgress * height * 1.1))
 		$AnimatedSprite2D.position.x = round(randf_range(-2,2))
@@ -34,6 +60,7 @@ func _process(delta):
 			crumbling = false
 			$AnimatedSprite2D.hide()
 		
+	
 	
 	
 func rubble():

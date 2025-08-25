@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cjlcfk42cmcph"]
 
-[ext_resource type="Script" uid="uid://dj7k8ccyxjwm4" path="res://Scripts/minigame.gd" id="1_ruoab"]
+[ext_resource type="Script" path="res://Scripts/minigame.gd" id="1_ruoab"]
 [ext_resource type="Texture2D" uid="uid://cyp65uswy6fpn" path="res://Art/Minigame/inject_ui_border.png" id="2_ruoab"]
 [ext_resource type="Texture2D" uid="uid://bmud2g03j3cxp" path="res://Art/Minigame/inject_ui_bg.png" id="3_c2jr1"]
 [ext_resource type="Texture2D" uid="uid://ckajmmft35nd0" path="res://Art/Minigame/inject_ui_hit_zone.png" id="4_lf3jr"]

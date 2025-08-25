@@ -8,6 +8,9 @@ func _input(event) -> void:
 			print("Space Pressed")
 			if cursorOverlap:
 				queue_free()
+				
+func _process(delta):
+	print($Area2D.has_overlapping_areas())
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("Area entered: ", area)
