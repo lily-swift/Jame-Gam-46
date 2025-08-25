@@ -10,9 +10,9 @@ func _input(event) -> void:
 			queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body == $"../MinigameCursor":
+	if body == $"../MinigamePlunger":
 		cursorOverlap = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body == $"../MinigameCursor":
+	if body == $"../MinigamePlunger":
 		cursorOverlap = false
