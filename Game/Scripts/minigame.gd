@@ -1,52 +1,52 @@
 extends Node2D
 @export var startTimer : float
 @export var cursorSpeed : float
+@export var winBarCount : int
+@export var winBarPixelHeight : int
 
-var cursor
-var winBars
-var cursorArea2D
-var winBarArea2D
-var minigameFinishArea2D
+var cursorCollisionShape : CollisionShape2D
+var cursorRigidBody2D : RigidBody2D
+var minigameFinishArea2D : Area2D
+var winBarDict : Dictionary
+
+var winBarRef = preload("res://Scenes/minigame_win_bar.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	cursor = $Minigame_Cursor
-	winBars = Array([$Minigame_WinBar])
-	cursorArea2D = $Minigame_Cursor/Area2D
-	winBarArea2D = $Minigame_WinBar/Area2D
+	cursorCollisionShape = $Minigame_Cursor/CollisionShape2D
+	cursorRigidBody2D = $Minigame_Cursor
 	minigameFinishArea2D = $Minigame_Bar/Area2D
-	
-	for bar in winBars:
-		bar.position = Vector2(0, (randf() * 40) - 20)
-		pass
-	
+
+	for i in range(winBarCount):
+		var bar : Sprite2D = winBarRef.instantiate()
+		add_child(bar)
+		bar.scale = Vector2(bar.scale.x, bar.scale.y * winBarPixelHeight)
+		bar.clicked.connect(_clicked)
+		
+		var newPosition : Vector2 = Vector2(0, (randf() * 40) - 20)
+		while IsOverlap(newPosition):
+			newPosition = Vector2(0, (randf() * 40) - 20)
+		bar.position = newPosition
+		
+		winBarDict.get_or_add(bar, newPosition)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if startTimer>0:
+	if startTimer > 0:
 		startTimer -= delta
 		return
-	if cursorArea2D.global_position.y >= minigameFinishArea2D.global_position.y:
-		if winBars.is_empty():
+	if cursorCollisionShape.global_position.y >= minigameFinishArea2D.global_position.y:
+		if winBarCount <= 0:
 			print("Minigame win!")
 		print("Minigame finished!")
 		queue_free()
-	cursor.position = Vector2(cursor.position.x, cursor.position.y + delta * cursorSpeed)
+	cursorRigidBody2D.linear_velocity = Vector2(0, cursorSpeed)
 
-func checkWinCondition() -> bool:
-	return winBars.is_empty()
-	
-func _input(event):
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_SPACE:
-			checkWinBars()
-	pass
+func _clicked() -> void:
+	winBarCount -= 1
 
-func checkWinBars() -> void:
-	for bar in winBars:
-		print("Checking bars")
-		for curs in bar.get_node("Area2D").get_overlapping_areas():
-			print("Win bar hit!")
-			winBarArea2D.erase(bar)
-			break
-	pass
+func IsOverlap(pos : Vector2) -> bool:
+	for barPos in winBarDict.values():
+		if pos.distance_to(barPos) <= winBarPixelHeight + 1:
+			return true
+	return false
