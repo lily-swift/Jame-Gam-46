@@ -1,29 +1,20 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://chub8xaykuame"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://chub8xaykuame"]
 
 [ext_resource type="FontFile" uid="uid://dswbhi82jmbe" path="res://m5x7.ttf" id="1_0e0o5"]
 [ext_resource type="FontFile" uid="uid://cke7sb3jbolk7" path="res://Resources/new_font_file.tres" id="1_qcqu0"]
+[ext_resource type="StyleBox" uid="uid://dyapkawnxasd0" path="res://Resources/buttonhover.tres" id="2_0urj1"]
+[ext_resource type="StyleBox" uid="uid://bd1ni55hbb3ca" path="res://Resources/buttonnormal.tres" id="3_cxxnd"]
+[ext_resource type="StyleBox" uid="uid://bgloxx6thq6px" path="res://Resources/buttonpressed.tres" id="3_iqspw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s523i"]
-bg_color = Color(0.443137, 0, 0.258824, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brgj2"]
-bg_color = Color(0.682353, 0.156863, 0.313726, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_277qh"]
-bg_color = Color(0.682353, 0.156863, 0.313726, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcqu0"]
-bg_color = Color(0.898039, 0.345098, 0.482353, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u88ro"]
 bg_color = Color(0.443137, 0, 0.258824, 1)
 
 [resource]
 default_base_scale = 0.13
 default_font = ExtResource("1_qcqu0")
 BoxContainer/constants/separation = 0
-Button/colors/font_color = Color(0.584314, 0.933333, 0.956863, 1)
-Button/colors/font_disabled_color = Color(0.584314, 0.933333, 0.956863, 1)
+Button/colors/font_color = Color(0.45095, 0.987655, 1, 1)
+Button/colors/font_disabled_color = Color(0.45098, 0.988235, 1, 1)
 Button/colors/font_focus_color = Color(0.584314, 0.933333, 0.956863, 1)
 Button/colors/font_hover_color = Color(0.584314, 0.933333, 0.956863, 1)
 Button/colors/font_hover_pressed_color = Color(0.584314, 0.933333, 0.956863, 1)
@@ -42,10 +33,11 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_0e0o5")
 Button/styles/disabled = SubResource("StyleBoxFlat_s523i")
-Button/styles/focus = SubResource("StyleBoxFlat_brgj2")
-Button/styles/hover = SubResource("StyleBoxFlat_277qh")
-Button/styles/normal = SubResource("StyleBoxFlat_qcqu0")
-Button/styles/pressed = SubResource("StyleBoxFlat_u88ro")
+Button/styles/focus = ExtResource("2_0urj1")
+Button/styles/hover = ExtResource("2_0urj1")
+Button/styles/hover_pressed = ExtResource("3_iqspw")
+Button/styles/normal = ExtResource("3_cxxnd")
+Button/styles/pressed = ExtResource("3_iqspw")
 FlatButton/styles/disabled = null
 FlatButton/styles/hover = null
 FlatButton/styles/normal = null

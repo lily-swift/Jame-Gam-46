@@ -17,6 +17,7 @@ func _ready():
 
 
 func _start_pressed():
+	await get_tree().create_timer(0.05).timeout
 	get_tree().change_scene_to_packed(levelScene);
 	
 func _options_pressed():
@@ -26,4 +27,5 @@ func _credits_pressed():
 	pass
 
 func _exit_pressed():
+	await get_tree().create_timer(0.05).timeout
 	get_tree().quit()
