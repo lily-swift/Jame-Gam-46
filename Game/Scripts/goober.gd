@@ -18,9 +18,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if position.x < left_bound.position.x:
 		turnDirection = 1
-		print("Turn right")
 	elif position.x > right_bound.position.x:
 		turnDirection = -1
-		print("Turn left")
 	position = Vector2(position.x + (delta * speed) * turnDirection, 0)
-	print("goob position: ", position)
