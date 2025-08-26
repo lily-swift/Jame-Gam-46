@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cjlcfk42cmcph"]
 
-[ext_resource type="PackedScene" uid="uid://dil3jigsgqdce" path="res://Scenes/minigame.tscn" id="1_fw16s"]
+[ext_resource type="PackedScene" uid="uid://cd350i2yignp4" path="res://Scenes/minigame.tscn" id="1_fw16s"]
 
 [node name="BuildingInject" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-13.0]

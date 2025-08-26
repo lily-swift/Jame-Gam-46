@@ -1,72 +1,79 @@
-[gd_scene load_steps=12 format=3 uid="uid://dil3jigsgqdce"]
+[gd_scene load_steps=13 format=3 uid="uid://cd350i2yignp4"]
 
-[ext_resource type="Script" uid="uid://dj7k8ccyxjwm4" path="res://Scripts/minigame.gd" id="1_255i5"]
-[ext_resource type="Texture2D" uid="uid://cyp65uswy6fpn" path="res://Art/Minigame/inject_ui_border.png" id="2_xcq3l"]
-[ext_resource type="Texture2D" uid="uid://bmud2g03j3cxp" path="res://Art/Minigame/inject_ui_bg.png" id="3_vnlq7"]
-[ext_resource type="Texture2D" uid="uid://b5cafsck0jg1b" path="res://Art/Minigame/inject_ui_injector.png" id="4_hr1fu"]
-[ext_resource type="Shader" uid="uid://bwgeqbipqcx1m" path="res://Scenes/mask_shader.gdshader" id="5_eicgb"]
-[ext_resource type="Texture2D" uid="uid://bojaxmk520ruo" path="res://Art/whiteSquare.png" id="6_puep3"]
-[ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="7_pg0ql"]
-[ext_resource type="AudioStream" uid="uid://8h0itw8682mq" path="res://Sound/SFX_injectSuccessJingle.wav" id="8_ohqu1"]
+[ext_resource type="Texture2D" uid="uid://cyp65uswy6fpn" path="res://Art/Minigame/inject_ui_border.png" id="1_entbh"]
+[ext_resource type="Script" uid="uid://dj7k8ccyxjwm4" path="res://Scripts/minigame.gd" id="1_vt7p6"]
+[ext_resource type="Texture2D" uid="uid://bmud2g03j3cxp" path="res://Art/Minigame/inject_ui_bg.png" id="2_cnqmc"]
+[ext_resource type="Texture2D" uid="uid://bsglbh1b213rs" path="res://Art/Minigame/inject_ui_injector.png" id="3_cnqmc"]
+[ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="4_xvspr"]
+[ext_resource type="AudioStream" uid="uid://8h0itw8682mq" path="res://Sound/SFX_injectSuccessJingle.wav" id="5_vt7p6"]
+[ext_resource type="Shader" uid="uid://bwgeqbipqcx1m" path="res://Scripts/mask_shader.gdshader" id="7_875xv"]
+[ext_resource type="Texture2D" uid="uid://bojaxmk520ruo" path="res://Art/whiteSquare.png" id="8_hu0dr"]
+[ext_resource type="AudioStream" uid="uid://bna45qmhg0m07" path="res://Sound/SFX_injectFailJingle.wav" id="9_xcq3l"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2jr1"]
-size = Vector2(24, 2)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0kie"]
+size = Vector2(20, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruoab"]
-size = Vector2(24, 2)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_icj52"]
+shader = ExtResource("7_875xv")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwbs2"]
-shader = ExtResource("5_eicgb")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_875xv"]
+size = Vector2(20, 52)
 
-[node name="Minigame" type="Node2D"]
-script = ExtResource("1_255i5")
-startDelay = 2.0
+[node name="Minigame" type="RigidBody2D"]
+collision_layer = 2147483648
+collision_mask = 2147483648
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("1_vt7p6")
+startDelay = 1.0
+plungerSpeed = 30.0
 winBarCount = 2
 winBarPixelHeight = 2
 
-[node name="MinigameBackground" type="Sprite2D" parent="."]
+[node name="Boarder" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_xcq3l")
+texture = ExtResource("1_entbh")
 
-[node name="MinigameBar" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("3_vnlq7")
+texture = ExtResource("2_cnqmc")
 
-[node name="Area2D" type="Area2D" parent="MinigameBar"]
+[node name="FinishMarker" type="Node2D" parent="Background"]
 position = Vector2(0, 25)
-collision_layer = 524288
-collision_mask = 524288
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MinigameBar/Area2D"]
-shape = SubResource("RectangleShape2D_c2jr1")
-disabled = true
-
-[node name="MinigamePlunger" type="RigidBody2D" parent="."]
+[node name="Plunger" type="RigidBody2D" parent="."]
 position = Vector2(0, -48)
 collision_layer = 524288
 collision_mask = 524288
 mass = 0.001
 gravity_scale = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MinigamePlunger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plunger"]
 position = Vector2(0, 25)
-shape = SubResource("RectangleShape2D_ruoab")
+shape = SubResource("RectangleShape2D_f0kie")
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="MinigamePlunger"]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Plunger"]
 copy_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="MinigamePlunger/BackBufferCopy"]
+[node name="Sprite2D" type="Sprite2D" parent="Plunger/BackBufferCopy"]
 texture_filter = 1
-texture = ExtResource("4_hr1fu")
-
-[node name="InjectPulseSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_pg0ql")
-
-[node name="MinigameWinJingle" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_ohqu1")
+texture = ExtResource("3_cnqmc")
 
 [node name="Mask" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_iwbs2")
+material = SubResource("ShaderMaterial_icj52")
 position = Vector2(0, -52)
 scale = Vector2(1, 3.5)
-texture = ExtResource("6_puep3")
+texture = ExtResource("8_hu0dr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_875xv")
+disabled = true
+
+[node name="InjectPulseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xvspr")
+
+[node name="WinJingle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vt7p6")
+
+[node name="LoseJingle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_xcq3l")

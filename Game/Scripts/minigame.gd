@@ -1,10 +1,11 @@
 extends Node2D
 
 @onready var injectPulseSFX : AudioStreamPlayer = $InjectPulseSFX
-@onready var minigameWinJingle: AudioStreamPlayer = $MinigameWinJingle
-@onready var minigameFinishArea2D : Area2D = $MinigameBar/Area2D
-@onready var plungerCollisionShape : CollisionShape2D = $MinigamePlunger/CollisionShape2D
-@onready var plungerRigidBody2D : RigidBody2D = $MinigamePlunger
+@onready var loseJingle: AudioStreamPlayer = $LoseJingle
+@onready var winJingle: AudioStreamPlayer = $WinJingle
+@onready var minigameFinishMarker : Node2D = $Background/FinishMarker
+@onready var plungerCollisionShape : CollisionShape2D = $Plunger/CollisionShape2D
+@onready var plungerRigidBody2D : RigidBody2D = $Plunger
 
 @export var startDelay : float
 @export var plungerSpeed : float
@@ -22,12 +23,12 @@ var winBarRef = preload("res://Scenes/minigame_win_bar.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	##hide()
-	pass
+	hide()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if beginMoving:
 		plungerRigidBody2D.linear_velocity = Vector2(0, plungerSpeed)
+		plungerRigidBody2D.position = Vector2(initPlungerPosition.x, plungerRigidBody2D.position.y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,7 +40,7 @@ func _process(delta: float) -> void:
 		return
 	beginMoving = true
 	
-	if plungerCollisionShape.global_position.y >= minigameFinishArea2D.global_position.y:
+	if plungerCollisionShape.global_position.y >= minigameFinishMarker.global_position.y:
 		if winBarDict.size() == 0:	## Minigame win
 			Win()
 		else:
@@ -47,7 +48,6 @@ func _process(delta: float) -> void:
 		print("Minigame finished!")
 		Reset()
 		return
-
 
 func _clicked(winBar: Sprite2D) -> void:
 	winBarDict.erase(winBar)
@@ -59,7 +59,6 @@ func _on_balloon_start_minigame(pos, difficulty):
 	Start()
 
 func Start() -> void:
-	position = Vector2(238, 42)
 	isActive = true
 	initPlungerPosition = plungerRigidBody2D.position
 	startTimer = startDelay
@@ -94,13 +93,15 @@ func IsOverlap(pos : Vector2) -> bool:
 	return false
 	
 func Win():
-	minigameWinJingle.play()
+	winJingle.play()
 
 func Lose():
-	pass
+	loseJingle.play()
 
 ## For debugging purposes
 func _input(event) -> void:
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_L:
 			Start()
+		if event.pressed and event.keycode == KEY_K:
+			position = Vector2(238, 42)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsglbh1b213rs"
-path="res://.godot/imported/inject_ui_injector.png-ea2de22adadf8dc112343f1a97559d9a.ctex"
+uid="uid://7qmneyqhil3v"
+path="res://.godot/imported/inject_ui_border-mid.png-fc4dcfa61dbb9f6b8df12715bd8fcfa7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Minigame/inject_ui_injector.png"
-dest_files=["res://.godot/imported/inject_ui_injector.png-ea2de22adadf8dc112343f1a97559d9a.ctex"]
+source_file="res://Art/Minigame/inject_ui_border-mid.png"
+dest_files=["res://.godot/imported/inject_ui_border-mid.png-fc4dcfa61dbb9f6b8df12715bd8fcfa7.ctex"]
 
 [params]
 
