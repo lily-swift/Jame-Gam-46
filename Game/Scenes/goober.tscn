@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://0fram74sigp4"]
+
+[ext_resource type="Texture2D" uid="uid://bn0y65uj6n53r" path="res://Art/blue_goober1.png" id="1_xy1m5"]
+[ext_resource type="Texture2D" uid="uid://iolh1oisrf47" path="res://Art/blue_goober2.png" id="2_68t3s"]
+[ext_resource type="Script" uid="uid://dn0pap0u545w3" path="res://Scripts/goober.gd" id="3_iv7l0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_maxl3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xy1m5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_68t3s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Goober" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_maxl3")
+frame_progress = 0.798868
+script = ExtResource("3_iv7l0")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://jmyk8hccmdkh"]
+
+[ext_resource type="Script" uid="uid://berfoatqds0gh" path="res://Scripts/goober_spawner.gd" id="1_owqh5"]
+
+[node name="GooberSpawner" type="Node2D"]
+script = ExtResource("1_owqh5")
+spawnWidth = 150.0
+
+[node name="LeftBound" type="Node2D" parent="."]
+position = Vector2(-122, 0)
+
+[node name="RightBound" type="Node2D" parent="."]
+position = Vector2(127, 0)
