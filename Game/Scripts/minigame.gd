@@ -59,6 +59,8 @@ func _clicked(winBar: Sprite2D) -> void:
 	
 func _on_balloon_start_minigame(pos, difficulty):
 	position = pos + offset
+	winBarCount = difficulty
+	winBarPixelHeight = 3 * (4 - difficulty)
 	show()
 	Start()
 

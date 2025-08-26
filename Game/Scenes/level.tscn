@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=65 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Script" path="res://Scripts/building.gd" id="1_u0did"]
@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://13cu1oi0tyb0" path="res://Backgrounddownscales.png" id="36_fq0f7"]
 [ext_resource type="Script" path="res://Scripts/snap.gd" id="37_bp4cd"]
 [ext_resource type="PackedScene" uid="uid://cd350i2yignp4" path="res://Scenes/minigame.tscn" id="40_nkhef"]
+[ext_resource type="Script" uid="uid://8skewj3u0poc" path="res://Scenes/pause.gd" id="41_fmtd1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
 animations = [{
@@ -626,9 +627,16 @@ script = ExtResource("37_bp4cd")
 camera = NodePath("../Balloon/Node/Camera2D")
 
 [node name="Minigame" parent="." instance=ExtResource("40_nkhef")]
-plungerSpeed = 25.0
+plungerSpeed = 23.0
 winBarPixelHeight = 4
 offset = Vector2(40, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("41_fmtd1")
 
 [connection signal="startMinigame" from="Balloon" to="Minigame" method="_on_balloon_start_minigame"]
 [connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]
