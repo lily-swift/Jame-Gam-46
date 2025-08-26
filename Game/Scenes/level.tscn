@@ -520,7 +520,7 @@ center_of_mass = Vector2(0, 8)
 angular_damp = 2.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VirusBody"]
-polygon = PackedVector2Array(8, 6, 14, 9, 16, 23, 11, 23, 7, 19, -7, 19, -11, 23, -16, 23, -14, 9, -8, 6)
+polygon = PackedVector2Array(8, 6, 14, 9, 16, 23, 11, 23, 7, 18, -7, 18, -11, 23, -16, 23, -14, 9, -8, 6)
 
 [node name="VirusAnims" type="AnimatedSprite2D" parent="VirusBody"]
 sprite_frames = SubResource("SpriteFrames_gf56v")
@@ -627,6 +627,7 @@ script = ExtResource("37_bp4cd")
 camera = NodePath("../Balloon/Node/Camera2D")
 
 [node name="Minigame" parent="." instance=ExtResource("40_nkhef")]
+position = Vector2(46, 0)
 plungerSpeed = 23.0
 winBarPixelHeight = 4
 offset = Vector2(40, 0)

@@ -86,13 +86,14 @@ func timers(delta):
 func startDrill():
 	if virusDrillArea.has_overlapping_bodies():
 		building = virusDrillArea.get_overlapping_bodies()[0]
-		#print(building)
-		state = "Drill"
-		startMinigame.emit(position, building.size)
-	else:
-		state = "Idle"
-		$LandSFX.play()
-		drillCDT = drillCooldown
+		if(not building.bubbled):
+			#print(building)
+			state = "Drill"
+			startMinigame.emit(position, building.size)
+			return
+	state = "Idle"
+	$LandSFX.play()
+	drillCDT = drillCooldown
 	
 
 func jump():
