@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bsglbh1b213rs" path="res://Art/Minigame/inject_ui_injector.png" id="3_cnqmc"]
 [ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="4_xvspr"]
 [ext_resource type="AudioStream" uid="uid://8h0itw8682mq" path="res://Sound/SFX_injectSuccessJingle.wav" id="5_vt7p6"]
-[ext_resource type="Shader" path="res://Scripts/mask_shader.gdshader" id="7_875xv"]
+[ext_resource type="Shader" uid="uid://bwgeqbipqcx1m" path="res://Scripts/mask_shader.gdshader" id="7_875xv"]
 [ext_resource type="Texture2D" uid="uid://bojaxmk520ruo" path="res://Art/whiteSquare.png" id="8_hu0dr"]
 [ext_resource type="AudioStream" uid="uid://bna45qmhg0m07" path="res://Sound/SFX_injectFailJingle.wav" id="9_xcq3l"]
 

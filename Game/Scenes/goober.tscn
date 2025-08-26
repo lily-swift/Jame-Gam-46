@@ -1,17 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://0fram74sigp4"]
+[gd_scene load_steps=7 format=3 uid="uid://0fram74sigp4"]
 
-[ext_resource type="Texture2D" uid="uid://bn0y65uj6n53r" path="res://Art/blue_goober1.png" id="1_xy1m5"]
-[ext_resource type="Texture2D" uid="uid://iolh1oisrf47" path="res://Art/blue_goober2.png" id="2_68t3s"]
+[ext_resource type="Shader" uid="uid://c3hyn2ad5c7ic" path="res://Scripts/goober.gdshader" id="1_68t3s"]
+[ext_resource type="Texture2D" uid="uid://p7fuuovrqgcy" path="res://Art/goober1.png" id="2_iv7l0"]
 [ext_resource type="Script" uid="uid://dn0pap0u545w3" path="res://Scripts/goober.gd" id="3_iv7l0"]
+[ext_resource type="Texture2D" uid="uid://ctmqsqhm6d0sc" path="res://Art/goober2.png" id="3_nd2k5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmie5"]
+shader = ExtResource("1_68t3s")
+shader_parameter/color = Color(0.0926473, 0.674723, 0.724302, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_maxl3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_xy1m5")
+"texture": ExtResource("2_iv7l0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_68t3s")
+"texture": ExtResource("3_nd2k5")
 }],
 "loop": true,
 "name": &"default",
@@ -19,6 +24,8 @@ animations = [{
 }]
 
 [node name="Goober" type="AnimatedSprite2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_lmie5")
 sprite_frames = SubResource("SpriteFrames_maxl3")
 frame_progress = 0.798868
 script = ExtResource("3_iv7l0")

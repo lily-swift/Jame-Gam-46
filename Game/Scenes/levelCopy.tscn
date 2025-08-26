@@ -1,0 +1,1210 @@
+[gd_scene load_steps=80 format=3 uid="uid://bsxlv5ydc77wm"]
+
+[ext_resource type="Script" uid="uid://2fqyy1a65sm7" path="res://Scripts/playerController.gd" id="1_qd4hx"]
+[ext_resource type="Texture2D" uid="uid://0sap0083y6i1" path="res://Art/PlayerSprites/crouch_balloon_lg.png" id="2_ykth4"]
+[ext_resource type="Texture2D" uid="uid://bt0uvuqy4pbvd" path="res://Art/PlayerSprites/crouch_balloon_md.png" id="3_1sbrp"]
+[ext_resource type="Texture2D" uid="uid://bx6suy44iqbay" path="res://Art/PlayerSprites/crouch_balloon_sm.png" id="4_ovwp7"]
+[ext_resource type="Texture2D" uid="uid://cly0yo53n3omr" path="res://Art/PlayerSprites/floating_balloon_lg.png" id="5_qhiyu"]
+[ext_resource type="Texture2D" uid="uid://bs7p0mcbgrvlp" path="res://Art/PlayerSprites/floating_balloon_md.png" id="6_evs8k"]
+[ext_resource type="Texture2D" uid="uid://tu564ej0eaka" path="res://Art/PlayerSprites/floating_balloon_sm.png" id="7_npvwr"]
+[ext_resource type="Texture2D" uid="uid://dmvea5picug24" path="res://Art/PlayerSprites/idle_balloon_lg.png" id="8_e7y4c"]
+[ext_resource type="Texture2D" uid="uid://of564jsif2ol" path="res://Art/PlayerSprites/idle_balloon_md.png" id="9_opnm4"]
+[ext_resource type="Texture2D" uid="uid://bnyb2qcrubou5" path="res://Art/PlayerSprites/idle_balloon_sm.png" id="10_k71x5"]
+[ext_resource type="Texture2D" uid="uid://8vriof6728pl" path="res://Art/PlayerSprites/jump_balloon_lg.png" id="11_sd20a"]
+[ext_resource type="Texture2D" uid="uid://boto8v7lyvk2u" path="res://Art/PlayerSprites/jump_balloon_md.png" id="12_8vd0j"]
+[ext_resource type="Texture2D" uid="uid://crvdtc37dtmoj" path="res://Art/PlayerSprites/jump_balloon_sm.png" id="13_rtgii"]
+[ext_resource type="AudioStream" uid="uid://dxf5kuc3qeqng" path="res://Sound/SFX_buttonHover.wav" id="14_k1dw5"]
+[ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="15_cw38l"]
+[ext_resource type="Script" uid="uid://du68t62m3wpjg" path="res://Scripts/camera_2d.gd" id="16_08x2i"]
+[ext_resource type="Script" uid="uid://chj5h6bx5dnxr" path="res://Scripts/game_timer.gd" id="17_ltjbk"]
+[ext_resource type="FontFile" uid="uid://dswbhi82jmbe" path="res://m5x7.ttf" id="18_8ewib"]
+[ext_resource type="Texture2D" uid="uid://msgtxrxjaajf" path="res://Art/PlayerSprites/crouch_body.png" id="19_64ms0"]
+[ext_resource type="Texture2D" uid="uid://cbm3k5xi2r8cy" path="res://Art/PlayerSprites/floating_body.png" id="20_xpnnm"]
+[ext_resource type="Texture2D" uid="uid://cyj5icrneeuhk" path="res://Art/PlayerSprites/idle_body.png" id="21_hjnhq"]
+[ext_resource type="Texture2D" uid="uid://6fyds0bdk5rg" path="res://Art/PlayerSprites/inject_body_spritesheet.png" id="22_fpg4o"]
+[ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="23_hnflu"]
+[ext_resource type="Script" uid="uid://b8k3rora2iv3f" path="res://Scripts/landeffects.gd" id="24_qvnuu"]
+[ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="25_0n1f3"]
+[ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scripts/soundtrack.gd" id="26_675n1"]
+[ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scripts/building.gd" id="27_0f16k"]
+[ext_resource type="Texture2D" uid="uid://dmp2smyr2ojta" path="res://Art/Buildings/radiotower.png" id="28_xkiqp"]
+[ext_resource type="Texture2D" uid="uid://bbxrqdghncmxp" path="res://Art/Buildings/radiotowerblue.png" id="29_xr605"]
+[ext_resource type="Texture2D" uid="uid://26xw7cukul33" path="res://Art/Buildings/rubble1.png" id="30_wqve6"]
+[ext_resource type="Texture2D" uid="uid://13cu1oi0tyb0" path="res://Backgrounddownscales.png" id="31_og80k"]
+[ext_resource type="Script" uid="uid://dorf35sjksvv2" path="res://Scripts/snap.gd" id="32_voym6"]
+[ext_resource type="PackedScene" uid="uid://cd350i2yignp4" path="res://Scenes/minigame.tscn" id="33_udbum"]
+[ext_resource type="Script" path="res://Scenes/pause.gd" id="34_pmm6d"]
+[ext_resource type="PackedScene" uid="uid://jmyk8hccmdkh" path="res://Scenes/goober_spawner.tscn" id="35_hha46"]
+[ext_resource type="Material" uid="uid://c2312lyotbrp4" path="res://Resources/transform.tres" id="36_42vct"]
+[ext_resource type="Texture2D" uid="uid://fccm6rkj8qci" path="res://Art/Buildings/alt officebubble.png" id="37_a3rvi"]
+[ext_resource type="Texture2D" uid="uid://bi48mgib2pdt5" path="res://Art/Buildings/alt office-export-darker.png" id="38_74als"]
+[ext_resource type="Texture2D" uid="uid://bgbdpnmhr0nvt" path="res://Art/Buildings/rubble4.png" id="39_o70vw"]
+[ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="40_lrhlf"]
+[ext_resource type="Texture2D" uid="uid://di4luiuepjuef" path="res://Art/Buildings/modernhouselol.png" id="41_pywlp"]
+[ext_resource type="Texture2D" uid="uid://dq0mn3h2ynjuf" path="res://Art/Buildings/rubble3.png" id="42_g6ooc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6hdu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ykth4")
+}],
+"loop": true,
+"name": &"CrouchL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1sbrp")
+}],
+"loop": true,
+"name": &"CrouchM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ovwp7")
+}],
+"loop": true,
+"name": &"CrouchS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("4_ovwp7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1sbrp")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_ykth4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1sbrp")
+}],
+"loop": true,
+"name": &"Drill",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhiyu")
+}],
+"loop": true,
+"name": &"FloatL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_evs8k")
+}],
+"loop": true,
+"name": &"FloatM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_npvwr")
+}],
+"loop": true,
+"name": &"FloatS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_e7y4c")
+}],
+"loop": true,
+"name": &"IdleL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_opnm4")
+}],
+"loop": true,
+"name": &"IdleM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_k71x5")
+}],
+"loop": true,
+"name": &"IdleS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_sd20a")
+}],
+"loop": true,
+"name": &"JumpL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_8vd0j")
+}],
+"loop": true,
+"name": &"JumpM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_rtgii")
+}],
+"loop": true,
+"name": &"JumpS",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km5ld"]
+radius = 7.5
+height = 16.5
+
+[sub_resource type="Theme" id="Theme_ais7f"]
+Label/fonts/font = ExtResource("18_8ewib")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2t4f"]
+size = Vector2(320, 20)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2klc5"]
+friction = 2.0
+rough = true
+bounce = 0.2
+absorbent = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a44l"]
+atlas = ExtResource("22_fpg4o")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cmrb"]
+atlas = ExtResource("22_fpg4o")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnhnk"]
+atlas = ExtResource("22_fpg4o")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24uko"]
+atlas = ExtResource("22_fpg4o")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gf56v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_64ms0")
+}],
+"loop": true,
+"name": &"Crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_xpnnm")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_hjnhq")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a44l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cmrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnhnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24uko")
+}],
+"loop": true,
+"name": &"Injecting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_hnflu")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2klc5"]
+radius = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2klc5"]
+size = Vector2(18, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idpk0"]
+size = Vector2(4, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ais7f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_xkiqp")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_xr605")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_re0q2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_wqve6")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"blank",
+"speed": 5.0
+}]
+
+[sub_resource type="Shader" id="Shader_5o4ln"]
+code = "shader_type canvas_item;
+uniform vec2 injectPoint;
+uniform bool enabled;
+uniform float progress;
+uniform float sizeX;
+uniform float sizeY;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float radius = pow(progress,2)*2.2;
+	// COLOR.b = 100.0;
+	COLOR.a = (sign(pow( (UV.x * sizeX - injectPoint.x)/sizeX ,2.0) + pow((UV.y * sizeY - injectPoint.y)/sizeY ,2.0) -  radius) + 1.0)*50.0;
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ag4x3"]
+shader = SubResource("Shader_5o4ln")
+shader_parameter/injectPoint = Vector2(67, 5)
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
+shader_parameter/sizeX = 60.0
+shader_parameter/sizeY = 80.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5o4ln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_a3rvi")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_74als")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcs0j"]
+size = Vector2(64, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ag4x3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_o70vw")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_a3rvi")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_74als")
+}],
+"loop": true,
+"name": &"building",
+"speed": 5.0
+}]
+
+[sub_resource type="Shader" id="Shader_maxl3"]
+code = "shader_type canvas_item;
+uniform vec2 injectPoint;
+uniform bool enabled;
+uniform float progress;
+uniform float sizeX;
+uniform float sizeY;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float radius = pow(progress,2)*2.2;
+	// COLOR.b = 100.0;
+	COLOR.a = (sign(pow( (UV.x * sizeX - injectPoint.x)/sizeX ,2.0) + pow((UV.y * sizeY - injectPoint.y)/sizeY ,2.0) -  radius) + 1.0)*50.0;
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_md013"]
+shader = SubResource("Shader_maxl3")
+shader_parameter/injectPoint = Vector2(67, 5)
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
+shader_parameter/sizeX = 60.0
+shader_parameter/sizeY = 80.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_maxl3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_a3rvi")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_74als")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_md013"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_o70vw")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_a3rvi")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_74als")
+}],
+"loop": true,
+"name": &"building",
+"speed": 5.0
+}]
+
+[sub_resource type="Shader" id="Shader_ogdfn"]
+code = "shader_type canvas_item;
+uniform vec2 injectPoint;
+uniform bool enabled;
+uniform float progress;
+uniform float sizeX;
+uniform float sizeY;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float radius = pow(progress,2)*2.2;
+	// COLOR.b = 100.0;
+	COLOR.a = (sign(pow( (UV.x * sizeX - injectPoint.x)/sizeX ,2.0) + pow((UV.y * sizeY - injectPoint.y)/sizeY ,2.0) -  radius) + 1.0)*50.0;
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1uqm"]
+shader = SubResource("Shader_ogdfn")
+shader_parameter/injectPoint = Vector2(67, 5)
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
+shader_parameter/sizeX = 60.0
+shader_parameter/sizeY = 80.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogdfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_a3rvi")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_74als")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l1uqm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_o70vw")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_a3rvi")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_74als")
+}],
+"loop": true,
+"name": &"building",
+"speed": 5.0
+}]
+
+[sub_resource type="Shader" id="Shader_gx30c"]
+code = "shader_type canvas_item;
+uniform vec2 injectPoint;
+uniform bool enabled;
+uniform float progress;
+uniform float sizeX;
+uniform float sizeY;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float radius = pow(progress,2)*2.2;
+	// COLOR.b = 100.0;
+	COLOR.a = (sign(pow( (UV.x * sizeX - injectPoint.x)/sizeX ,2.0) + pow((UV.y * sizeY - injectPoint.y)/sizeY ,2.0) -  radius) + 1.0)*50.0;
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jmchl"]
+shader = SubResource("Shader_gx30c")
+shader_parameter/injectPoint = Vector2(67, 5)
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
+shader_parameter/sizeX = 60.0
+shader_parameter/sizeY = 80.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gx30c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_a3rvi")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_74als")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jmchl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_o70vw")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_a3rvi")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_74als")
+}],
+"loop": true,
+"name": &"building",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("40_lrhlf")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_pywlp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53r2q"]
+size = Vector2(17, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_luodc"]
+size = Vector2(19, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cgv8"]
+size = Vector2(12, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u0did"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("42_g6ooc")
+}],
+"loop": true,
+"name": &"Rubble",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"blank",
+"speed": 5.0
+}]
+
+[node name="Level" type="Node2D"]
+texture_filter = 1
+
+[node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims", "virusDrillArea", "groundDetector")]
+top_level = true
+texture_filter = 1
+position = Vector2(0, 5)
+collision_layer = 32
+collision_mask = 7
+gravity_scale = -1.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, -5)
+angular_damp = 13.0
+script = ExtResource("1_qd4hx")
+jumpCoolDown = 0.9
+virusBody = NodePath("../VirusBody")
+virusAnims = NodePath("../VirusBody/VirusAnims")
+virusDrillArea = NodePath("../VirusBody/InjectDetect")
+groundDetector = NodePath("../VirusBody/Area2D")
+jumpForce = 1325.0
+jumpStartup = 0.05
+jumpDuration = 0.47
+moveSpeed = 250.0
+frictionX = 3.0
+frictionY = 2.0
+drillStartup = 0.15
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Balloon"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_n6hdu")
+animation = &"Drill"
+offset = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Balloon"]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_km5ld")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Balloon"]
+node_a = NodePath("..")
+node_b = NodePath("../../VirusBody")
+disable_collision = false
+angular_limit_lower = -0.523599
+angular_limit_upper = 0.523599
+
+[node name="InflateSFX" type="AudioStreamPlayer2D" parent="Balloon"]
+stream = ExtResource("14_k1dw5")
+
+[node name="LandSFX" type="AudioStreamPlayer2D" parent="Balloon"]
+position = Vector2(0, -7)
+stream = ExtResource("15_cw38l")
+
+[node name="Node" type="Node" parent="Balloon"]
+
+[node name="Camera2D" type="Camera2D" parent="Balloon/Node" node_paths=PackedStringArray("parent")]
+position = Vector2(0, -10)
+script = ExtResource("16_08x2i")
+parent = NodePath("../..")
+
+[node name="Node2D" type="Node2D" parent="Balloon/Node/Camera2D"]
+script = ExtResource("17_ltjbk")
+
+[node name="Label" type="Label" parent="Balloon/Node/Camera2D/Node2D"]
+texture_filter = 1
+offset_left = -149.0
+offset_top = -83.0
+offset_right = -95.0
+offset_bottom = -60.0
+theme = SubResource("Theme_ais7f")
+text = "2:00"
+
+[node name="Timer" type="Timer" parent="Balloon/Node/Camera2D/Node2D"]
+wait_time = 45.0
+one_shot = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 80)
+scale = Vector2(4.36, 1)
+collision_layer = 2
+collision_mask = 289
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_i2t4f")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -160.0
+offset_top = -10.0
+offset_right = 160.0
+offset_bottom = 10.0
+color = Color(0, 0.243137, 0.290196, 1)
+
+[node name="VirusBody" type="RigidBody2D" parent="."]
+position = Vector2(0, 7)
+collision_mask = 38
+mass = 2.3
+physics_material_override = SubResource("PhysicsMaterial_2klc5")
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, 8)
+angular_damp = 2.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VirusBody"]
+polygon = PackedVector2Array(8, 6, 14, 9, 16, 23, 11, 23, 7, 18, -7, 18, -11, 23, -16, 23, -14, 9, -8, 6)
+
+[node name="VirusAnims" type="AnimatedSprite2D" parent="VirusBody"]
+sprite_frames = SubResource("SpriteFrames_gf56v")
+animation = &"Injecting"
+speed_scale = 2.5
+
+[node name="NeckPillowRight" type="CollisionShape2D" parent="VirusBody"]
+position = Vector2(7, 3)
+shape = SubResource("CircleShape2D_2klc5")
+
+[node name="NeckPillowLeft" type="CollisionShape2D" parent="VirusBody"]
+position = Vector2(-7, 3)
+shape = SubResource("CircleShape2D_2klc5")
+
+[node name="Area2D" type="Area2D" parent="VirusBody"]
+collision_layer = 256
+collision_mask = 6
+input_pickable = false
+script = ExtResource("24_qvnuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VirusBody/Area2D"]
+position = Vector2(-5.20549e-07, 15)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_2klc5")
+
+[node name="LandSFX" type="AudioStreamPlayer2D" parent="VirusBody/Area2D"]
+position = Vector2(0, -7)
+stream = ExtResource("15_cw38l")
+
+[node name="InjectDetect" type="Area2D" parent="VirusBody"]
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VirusBody/InjectDetect"]
+position = Vector2(0, 20.5)
+shape = SubResource("RectangleShape2D_idpk0")
+
+[node name="InjectTip" type="Node2D" parent="VirusBody"]
+position = Vector2(0, 24)
+scale = Vector2(3.93441, 65.6537)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("25_0n1f3")
+volume_db = -10.0
+script = ExtResource("26_675n1")
+
+[node name="Radiotower" type="RigidBody2D" parent="."]
+position = Vector2(145, 20)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+size = 3
+height = 98.0
+rubblePos = Vector2(25, 34)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Radiotower"]
+sprite_frames = SubResource("SpriteFrames_ais7f")
+
+[node name="Effects" type="AnimatedSprite2D" parent="Radiotower"]
+z_index = -3
+position = Vector2(25, 34)
+sprite_frames = SubResource("SpriteFrames_re0q2")
+animation = &"Rubble"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Radiotower"]
+polygon = PackedVector2Array(-2, -41, 2, -41, 8, -20, 5, -15, 9, 50, -9, 50, -5, -15, -8, -20)
+
+[node name="Background" type="Sprite2D" parent="." node_paths=PackedStringArray("camera")]
+modulate = Color(0.733005, 0.733005, 0.733005, 1)
+z_index = -20
+position = Vector2(0, -40)
+texture = ExtResource("31_og80k")
+script = ExtResource("32_voym6")
+camera = NodePath("../Balloon/Node/Camera2D")
+
+[node name="Background2" type="Sprite2D" parent="." node_paths=PackedStringArray("camera")]
+modulate = Color(0.733005, 0.733005, 0.733005, 1)
+z_index = -20
+position = Vector2(-475, -40)
+scale = Vector2(-1, 1)
+texture = ExtResource("31_og80k")
+script = ExtResource("32_voym6")
+camera = NodePath("../Balloon/Node/Camera2D")
+
+[node name="Background3" type="Sprite2D" parent="." node_paths=PackedStringArray("camera")]
+modulate = Color(0.733005, 0.733005, 0.733005, 1)
+z_index = -20
+position = Vector2(463, -40)
+scale = Vector2(-1, 1)
+texture = ExtResource("31_og80k")
+script = ExtResource("32_voym6")
+camera = NodePath("../Balloon/Node/Camera2D")
+
+[node name="Minigame" parent="." instance=ExtResource("33_udbum")]
+position = Vector2(46, 0)
+plungerSpeed = 23.0
+winBarPixelHeight = 4
+offset = Vector2(40, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("34_pmm6d")
+
+[node name="GooberSpawner" parent="." instance=ExtResource("35_hha46")]
+position = Vector2(0, 66)
+gooberCount = 30
+leftBoundDistance = 400
+rightBoundDistance = 400
+
+[node name="Offices" type="Node2D" parent="."]
+
+[node name="Office" type="RigidBody2D" parent="Offices" node_paths=PackedStringArray("injectPoint")]
+position = Vector2(-97, 30)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+size = 3
+height = 80.0
+width = 64.0
+rubblePos = Vector2(0, 24)
+shader = SubResource("ShaderMaterial_ag4x3")
+injectPoint = NodePath("../../VirusBody/InjectTip")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Offices/Office"]
+material = ExtResource("36_42vct")
+sprite_frames = SubResource("SpriteFrames_5o4ln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Offices/Office"]
+shape = SubResource("RectangleShape2D_hcs0j")
+
+[node name="Effects" type="AnimatedSprite2D" parent="Offices/Office"]
+z_index = -3
+position = Vector2(0, 24)
+sprite_frames = SubResource("SpriteFrames_ag4x3")
+animation = &"balloon"
+
+[node name="Office2" type="RigidBody2D" parent="Offices" node_paths=PackedStringArray("injectPoint")]
+position = Vector2(352, 30)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+size = 3
+height = 80.0
+width = 64.0
+rubblePos = Vector2(0, 24)
+shader = SubResource("ShaderMaterial_md013")
+injectPoint = NodePath("../../VirusBody/InjectTip")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Offices/Office2"]
+material = ExtResource("36_42vct")
+sprite_frames = SubResource("SpriteFrames_maxl3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Offices/Office2"]
+shape = SubResource("RectangleShape2D_hcs0j")
+
+[node name="Effects" type="AnimatedSprite2D" parent="Offices/Office2"]
+z_index = -3
+position = Vector2(0, 24)
+sprite_frames = SubResource("SpriteFrames_md013")
+animation = &"balloon"
+
+[node name="Office3" type="RigidBody2D" parent="Offices" node_paths=PackedStringArray("injectPoint")]
+position = Vector2(-568, 30)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+size = 3
+height = 80.0
+width = 64.0
+rubblePos = Vector2(0, 24)
+shader = SubResource("ShaderMaterial_l1uqm")
+injectPoint = NodePath("../../VirusBody/InjectTip")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Offices/Office3"]
+material = ExtResource("36_42vct")
+sprite_frames = SubResource("SpriteFrames_ogdfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Offices/Office3"]
+shape = SubResource("RectangleShape2D_hcs0j")
+
+[node name="Effects" type="AnimatedSprite2D" parent="Offices/Office3"]
+z_index = -3
+position = Vector2(0, 24)
+sprite_frames = SubResource("SpriteFrames_l1uqm")
+animation = &"balloon"
+
+[node name="Office4" type="RigidBody2D" parent="Offices" node_paths=PackedStringArray("injectPoint")]
+position = Vector2(-384, 30)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+size = 3
+height = 80.0
+width = 64.0
+rubblePos = Vector2(0, 24)
+shader = SubResource("ShaderMaterial_jmchl")
+injectPoint = NodePath("../../VirusBody/InjectTip")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Offices/Office4"]
+material = ExtResource("36_42vct")
+sprite_frames = SubResource("SpriteFrames_gx30c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Offices/Office4"]
+shape = SubResource("RectangleShape2D_hcs0j")
+
+[node name="Effects" type="AnimatedSprite2D" parent="Offices/Office4"]
+z_index = -3
+position = Vector2(0, 24)
+sprite_frames = SubResource("SpriteFrames_jmchl")
+animation = &"balloon"
+
+[node name="ModernHouses" type="Node2D" parent="."]
+
+[node name="ModernHouse" type="RigidBody2D" parent="ModernHouses"]
+position = Vector2(88, 54)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+height = 32.0
+rubblePos = Vector2(8, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouses/ModernHouse"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_53r2q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouses/ModernHouse"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouses/ModernHouse"]
+position = Vector2(18, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Effects" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
+
+[node name="ModernHouse2" type="RigidBody2D" parent="ModernHouses"]
+position = Vector2(-505, 54)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+height = 32.0
+rubblePos = Vector2(8, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse2"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouses/ModernHouse2"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_53r2q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouses/ModernHouse2"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouses/ModernHouse2"]
+position = Vector2(18, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Effects" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse2"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
+
+[node name="ModernHouse3" type="RigidBody2D" parent="ModernHouses"]
+position = Vector2(-450, 54)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+height = 32.0
+rubblePos = Vector2(8, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse3"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouses/ModernHouse3"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_53r2q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouses/ModernHouse3"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouses/ModernHouse3"]
+position = Vector2(18, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Effects" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse3"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
+
+[node name="ModernHouse4" type="RigidBody2D" parent="ModernHouses"]
+position = Vector2(-173, 54)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+height = 32.0
+rubblePos = Vector2(8, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse4"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouses/ModernHouse4"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_53r2q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouses/ModernHouse4"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouses/ModernHouse4"]
+position = Vector2(18, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Effects" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse4"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
+
+[node name="ModernHouse5" type="RigidBody2D" parent="ModernHouses"]
+position = Vector2(582, 54)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+height = 32.0
+rubblePos = Vector2(8, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse5"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouses/ModernHouse5"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_53r2q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouses/ModernHouse5"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouses/ModernHouse5"]
+position = Vector2(18, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Effects" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse5"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
+
+[node name="ModernHouse6" type="RigidBody2D" parent="ModernHouses"]
+position = Vector2(527, 54)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+height = 32.0
+rubblePos = Vector2(8, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse6"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouses/ModernHouse6"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_53r2q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouses/ModernHouse6"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouses/ModernHouse6"]
+position = Vector2(18, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Effects" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse6"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
+
+[node name="ModernHouse7" type="RigidBody2D" parent="ModernHouses"]
+position = Vector2(217, 54)
+collision_layer = 4
+collision_mask = 295
+mass = 1000.0
+freeze_mode = 1
+script = ExtResource("27_0f16k")
+height = 32.0
+rubblePos = Vector2(8, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse7"]
+sprite_frames = SubResource("SpriteFrames_1ainy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModernHouses/ModernHouse7"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_53r2q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ModernHouses/ModernHouse7"]
+position = Vector2(-14.5, 4.5)
+shape = SubResource("RectangleShape2D_luodc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ModernHouses/ModernHouse7"]
+position = Vector2(18, 1.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Effects" type="AnimatedSprite2D" parent="ModernHouses/ModernHouse7"]
+z_index = -3
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_u0did")
+animation = &"Rubble"
+
+[connection signal="startMinigame" from="Balloon" to="Minigame" method="_on_balloon_start_minigame"]
+[connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]
+[connection signal="minigameLose" from="Minigame" to="Balloon" method="_on_minigame_minigame_lose"]
+[connection signal="minigameWin" from="Minigame" to="Balloon" method="_on_minigame_minigame_win"]
