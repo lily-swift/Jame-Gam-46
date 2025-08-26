@@ -86,7 +86,7 @@ func timers(delta):
 func startDrill():
 	if virusDrillArea.has_overlapping_bodies():
 		building = virusDrillArea.get_overlapping_bodies()[0]
-		print(building)
+		#print(building)
 		state = "Drill"
 		startMinigame.emit(position, building.size)
 	else:
@@ -198,5 +198,21 @@ func _process(delta):
 			$AnimatedSprite2D.play("CrouchL")
 	elif state == "Drill":
 		$AnimatedSprite2D.play("Drill")
+
+
+func _on_minigame_minigame_lose():
+	building.rubble()
+	state = "Idle"
+	await get_tree().create_timer(0.08).timeout
+	linear_velocity = Vector2(0,0)
+	virusBody.linear_velocity = Vector2(0,0)
+	
+
+func _on_minigame_minigame_win():
+	building.bubble()
+	state = "Idle"
+	await get_tree().create_timer(0.08).timeout
+	linear_velocity = Vector2(0,0)
+	virusBody.linear_velocity = Vector2(0,0)
 	
 	

@@ -7,4 +7,3 @@ metadata/_edit_vertical_guides_ = [-13.0]
 
 [node name="Minigame" parent="." instance=ExtResource("1_fw16s")]
 position = Vector2(66, 111)
-plungerSpeed = 30.0

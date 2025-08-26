@@ -21,6 +21,9 @@ var beginMoving : bool = false
 
 var winBarRef = preload("res://Scenes/minigame_win_bar.tscn")
 
+signal minigameWin
+signal minigameLose
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide()
@@ -45,6 +48,7 @@ func _process(delta: float) -> void:
 			Win()
 		else:
 			Lose()
+		hide()
 		print("Minigame finished!")
 		Reset()
 		return
@@ -94,9 +98,11 @@ func IsOverlap(pos : Vector2) -> bool:
 	
 func Win():
 	winJingle.play()
+	minigameWin.emit()
 
 func Lose():
 	loseJingle.play()
+	minigameLose.emit()
 
 ## For debugging purposes
 func _input(event) -> void:
