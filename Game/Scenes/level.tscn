@@ -1,7 +1,7 @@
 [gd_scene load_steps=65 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
-[ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scripts/building.gd" id="1_u0did"]
+[ext_resource type="Script" path="res://Scripts/building.gd" id="1_u0did"]
 [ext_resource type="Texture2D" uid="uid://di4luiuepjuef" path="res://Art/Buildings/modernhouselol.png" id="2_6y3s5"]
 [ext_resource type="Texture2D" uid="uid://dq0mn3h2ynjuf" path="res://Art/Buildings/rubble3.png" id="4_luodc"]
 [ext_resource type="Texture2D" uid="uid://0sap0083y6i1" path="res://Art/PlayerSprites/crouch_balloon_lg.png" id="4_pa6b8"]
@@ -23,12 +23,12 @@
 [ext_resource type="Texture2D" uid="uid://6fyds0bdk5rg" path="res://Art/PlayerSprites/inject_body_spritesheet.png" id="16_00k4y"]
 [ext_resource type="AudioStream" uid="uid://dxf5kuc3qeqng" path="res://Sound/SFX_buttonHover.wav" id="16_24uko"]
 [ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="17_nngtn"]
-[ext_resource type="Script" uid="uid://chj5h6bx5dnxr" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
-[ext_resource type="Script" uid="uid://b8k3rora2iv3f" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
+[ext_resource type="Script" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
+[ext_resource type="Script" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
 [ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
 [ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
-[ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
-[ext_resource type="Script" uid="uid://du68t62m3wpjg" path="res://Scripts/camera_2d.gd" id="26_re0q2"]
+[ext_resource type="Script" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
+[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="26_re0q2"]
 [ext_resource type="Texture2D" uid="uid://bgbdpnmhr0nvt" path="res://Art/Buildings/rubble4.png" id="29_hcs0j"]
 [ext_resource type="Texture2D" uid="uid://bi48mgib2pdt5" path="res://Art/Buildings/alt office-export-darker.png" id="31_csjfj"]
 [ext_resource type="Texture2D" uid="uid://fccm6rkj8qci" path="res://Art/Buildings/alt officebubble.png" id="31_d3deu"]
@@ -37,10 +37,10 @@
 [ext_resource type="Material" uid="uid://c2312lyotbrp4" path="res://Resources/transform.tres" id="31_nkhef"]
 [ext_resource type="Texture2D" uid="uid://26xw7cukul33" path="res://Art/Buildings/rubble1.png" id="32_dw52x"]
 [ext_resource type="Texture2D" uid="uid://bbxrqdghncmxp" path="res://Art/Buildings/radiotowerblue.png" id="34_fq0f7"]
-[ext_resource type="Texture2D" uid="uid://13cu1oi0tyb0" path="res://Backgrounddownscales.png" id="36_fq0f7"]
-[ext_resource type="Script" uid="uid://dorf35sjksvv2" path="res://Scripts/snap.gd" id="37_bp4cd"]
+[ext_resource type="Script" path="res://Scripts/snap.gd" id="37_bp4cd"]
+[ext_resource type="Texture2D" uid="uid://f6f0fd0y6aeb" path="res://Backgrounddownscaledlessflashing.png" id="38_fmtd1"]
 [ext_resource type="PackedScene" uid="uid://cd350i2yignp4" path="res://Scenes/minigame.tscn" id="40_nkhef"]
-[ext_resource type="Script" path="res://Scenes/pause.gd" id="41_fmtd1"]
+[ext_resource type="Script" uid="uid://8skewj3u0poc" path="res://Scenes/pause.gd" id="41_fmtd1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ainy"]
 animations = [{
@@ -622,7 +622,7 @@ polygon = PackedVector2Array(-2, -41, 2, -41, 8, -20, 5, -15, 9, 50, -9, 50, -5,
 modulate = Color(0.733005, 0.733005, 0.733005, 1)
 z_index = -20
 position = Vector2(0, -40)
-texture = ExtResource("36_fq0f7")
+texture = ExtResource("38_fmtd1")
 script = ExtResource("37_bp4cd")
 camera = NodePath("../Balloon/Node/Camera2D")
 
