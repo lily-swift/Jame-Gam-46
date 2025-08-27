@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://0fram74sigp4"]
 
-[ext_resource type="Shader" uid="uid://c3hyn2ad5c7ic" path="res://Scripts/goober.gdshader" id="1_68t3s"]
+[ext_resource type="Shader" path="res://Scripts/goober.gdshader" id="1_68t3s"]
 [ext_resource type="Texture2D" uid="uid://p7fuuovrqgcy" path="res://Art/goober1.png" id="2_iv7l0"]
-[ext_resource type="Script" uid="uid://dn0pap0u545w3" path="res://Scripts/goober.gd" id="3_iv7l0"]
+[ext_resource type="Script" path="res://Scripts/goober.gd" id="3_iv7l0"]
 [ext_resource type="Texture2D" uid="uid://ctmqsqhm6d0sc" path="res://Art/goober2.png" id="3_nd2k5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmie5"]
@@ -26,6 +26,7 @@ animations = [{
 [node name="Goober" type="AnimatedSprite2D"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_lmie5")
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_maxl3")
 frame_progress = 0.798868
 script = ExtResource("3_iv7l0")
