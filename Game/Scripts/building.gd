@@ -13,6 +13,8 @@ var startpos : Vector2
 @export var injectPoint : Node2D
 var bubbleProgress : float
 
+var BalloonForBalloonGod : CPUParticles2D
+
 func _ready():
 	$AnimatedSprite2D.play("default")
 	$Effects.hide()
@@ -20,6 +22,7 @@ func _ready():
 	startpos = position
 	print(startpos)
 	z_index = -1
+	BalloonForBalloonGod = $"../../Background/BalloonGod/Balloon4BalloonGod"
 	
 
 func bubble():
@@ -42,8 +45,10 @@ func bubble():
 		#$AnimatedSprite2D.set_instance_shader_parameter("sizeY",height)
 		mass = 4
 		gravity_scale = -0.25
+		BalloonForBalloonGod.emitting = true
 	
 func _process(delta):
+	BalloonForBalloonGod.emitting = false
 	if(Input.is_action_just_pressed("debug") and visible):
 		bubble()
 	
