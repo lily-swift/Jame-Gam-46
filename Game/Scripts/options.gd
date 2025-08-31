@@ -4,7 +4,7 @@ extends Panel
 
 @onready var musicSlider : HSlider = $MusicSlider/HSlider
 @onready var sfxSlider : HSlider = $SFXSlider/HSlider
-@onready var sfxPlayer : AudioStreamPlayer = $AudioStreamPlayer
+@onready var sfxPlayer : AudioStreamPlayer2D = $AudioStreamPlayer
 
 var musicBusId : int
 var sfxBusId : int

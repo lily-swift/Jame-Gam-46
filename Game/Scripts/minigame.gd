@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var injectPulseSFX : AudioStreamPlayer = $InjectPulseSFX
-@onready var loseJingle: AudioStreamPlayer = $LoseJingle
-@onready var winJingle: AudioStreamPlayer = $WinJingle
+@onready var injectPulseSFX : AudioStreamPlayer2D = $InjectPulseSFX
+@onready var loseJingle: AudioStreamPlayer2D = $LoseJingle
+@onready var winJingle: AudioStreamPlayer2D = $WinJingle
 @onready var minigameFinishMarker : Node2D = $Background/FinishMarker
 @onready var plungerCollisionShape : CollisionShape2D = $Plunger/CollisionShape2D
 @onready var plungerRigidBody2D : RigidBody2D = $Plunger

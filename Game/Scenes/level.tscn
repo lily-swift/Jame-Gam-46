@@ -23,12 +23,12 @@
 [ext_resource type="Texture2D" uid="uid://6fyds0bdk5rg" path="res://Art/PlayerSprites/inject_body_spritesheet.png" id="16_00k4y"]
 [ext_resource type="AudioStream" uid="uid://dxf5kuc3qeqng" path="res://Sound/SFX_buttonHover.wav" id="16_24uko"]
 [ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="17_nngtn"]
-[ext_resource type="Script" uid="uid://bbx8s3jieeq42" path="res://Scenes/fade_in.gd" id="19_dx6so"]
-[ext_resource type="Script" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
-[ext_resource type="Script" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
+[ext_resource type="Script" path="res://Scenes/fade_in.gd" id="19_dx6so"]
+[ext_resource type="Script" uid="uid://chj5h6bx5dnxr" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
+[ext_resource type="Script" uid="uid://b8k3rora2iv3f" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
 [ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
 [ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
-[ext_resource type="Script" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
+[ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
 [ext_resource type="Script" uid="uid://du68t62m3wpjg" path="res://Scripts/camera_2d.gd" id="26_re0q2"]
 [ext_resource type="Texture2D" uid="uid://bgbdpnmhr0nvt" path="res://Art/Buildings/rubble4.png" id="29_hcs0j"]
 [ext_resource type="Texture2D" uid="uid://bi48mgib2pdt5" path="res://Art/Buildings/alt office-export-darker.png" id="31_csjfj"]
@@ -609,10 +609,12 @@ angular_limit_upper = 0.523599
 
 [node name="InflateSFX" type="AudioStreamPlayer2D" parent="Balloon"]
 stream = ExtResource("16_24uko")
+bus = &"SFX"
 
 [node name="LandSFX" type="AudioStreamPlayer2D" parent="Balloon"]
 position = Vector2(0, -7)
 stream = ExtResource("24_u0did")
+bus = &"SFX"
 
 [node name="Node" type="Node" parent="Balloon"]
 
@@ -700,6 +702,7 @@ shape = SubResource("RectangleShape2D_2klc5")
 [node name="LandSFX" type="AudioStreamPlayer2D" parent="VirusBody/Area2D"]
 position = Vector2(0, -7)
 stream = ExtResource("24_u0did")
+bus = &"SFX"
 
 [node name="InjectDetect" type="Area2D" parent="VirusBody"]
 collision_layer = 256
@@ -716,6 +719,7 @@ scale = Vector2(3.93441, 65.6537)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_gf56v")
 volume_db = -10.0
+bus = &"Music"
 script = ExtResource("25_6y3s5")
 
 [node name="Minigame" parent="." instance=ExtResource("40_nkhef")]
