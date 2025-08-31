@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=87 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scripts/building.gd" id="1_u0did"]
@@ -23,11 +23,12 @@
 [ext_resource type="Texture2D" uid="uid://6fyds0bdk5rg" path="res://Art/PlayerSprites/inject_body_spritesheet.png" id="16_00k4y"]
 [ext_resource type="AudioStream" uid="uid://dxf5kuc3qeqng" path="res://Sound/SFX_buttonHover.wav" id="16_24uko"]
 [ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="17_nngtn"]
-[ext_resource type="Script" uid="uid://chj5h6bx5dnxr" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
-[ext_resource type="Script" uid="uid://b8k3rora2iv3f" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
+[ext_resource type="Script" uid="uid://bbx8s3jieeq42" path="res://Scenes/fade_in.gd" id="19_dx6so"]
+[ext_resource type="Script" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
+[ext_resource type="Script" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
 [ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
 [ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
-[ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
+[ext_resource type="Script" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
 [ext_resource type="Script" uid="uid://du68t62m3wpjg" path="res://Scripts/camera_2d.gd" id="26_re0q2"]
 [ext_resource type="Texture2D" uid="uid://bgbdpnmhr0nvt" path="res://Art/Buildings/rubble4.png" id="29_hcs0j"]
 [ext_resource type="Texture2D" uid="uid://bi48mgib2pdt5" path="res://Art/Buildings/alt office-export-darker.png" id="31_csjfj"]
@@ -174,6 +175,13 @@ height = 16.5
 
 [sub_resource type="Theme" id="Theme_ais7f"]
 Label/fonts/font = ExtResource("31_dw52x")
+
+[sub_resource type="Gradient" id="Gradient_wbq00"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dx6so"]
+gradient = SubResource("Gradient_wbq00")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2t4f"]
 size = Vector2(320, 20)
@@ -552,15 +560,18 @@ animations = [{
 shader = ExtResource("50_cpxpw")
 shader_parameter/color = Color(0.682353, 0.156863, 0.313726, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbq00"]
+size = Vector2(4000, 20)
+
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
 [node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims", "virusDrillArea", "groundDetector")]
 top_level = true
 texture_filter = 1
-position = Vector2(0, 5)
+position = Vector2(0, 37)
 collision_layer = 32
-collision_mask = 7
+collision_mask = 8199
 gravity_scale = -1.0
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, -5)
@@ -626,16 +637,24 @@ text = "2:00"
 wait_time = 45.0
 one_shot = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Fade In" type="Sprite2D" parent="Balloon/Node/Camera2D/Node2D"]
+visible = false
+position = Vector2(0, 10)
+scale = Vector2(2, 200)
+texture = SubResource("GradientTexture1D_dx6so")
+script = ExtResource("19_dx6so")
+fadeTime = 0.3
+
+[node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, 80)
 scale = Vector2(4.36, 1)
 collision_layer = 2
 collision_mask = 289
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("RectangleShape2D_i2t4f")
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+[node name="ColorRect" type="ColorRect" parent="Ground"]
 offset_left = -160.0
 offset_top = -10.0
 offset_right = 160.0
@@ -643,8 +662,8 @@ offset_bottom = 10.0
 color = Color(0, 0.243137, 0.290196, 1)
 
 [node name="VirusBody" type="RigidBody2D" parent="."]
-position = Vector2(0, 7)
-collision_mask = 38
+position = Vector2(0, 37)
+collision_mask = 8230
 mass = 2.3
 physics_material_override = SubResource("PhysicsMaterial_2klc5")
 center_of_mass_mode = 1
@@ -652,7 +671,7 @@ center_of_mass = Vector2(0, 8)
 angular_damp = 2.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VirusBody"]
-polygon = PackedVector2Array(8, 6, 14, 9, 16, 23, 11, 23, 7, 18, -7, 18, -11, 23, -16, 23, -14, 9, -8, 6)
+polygon = PackedVector2Array(8, 6, 14, 9, 16, 22, 11, 22, 7, 18, -7, 18, -11, 22, -16, 22, -14, 9, -8, 6)
 
 [node name="VirusAnims" type="AnimatedSprite2D" parent="VirusBody"]
 sprite_frames = SubResource("SpriteFrames_gf56v")
@@ -1132,9 +1151,9 @@ scaleX = 1.0
 [node name="BalloonGod" type="Sprite2D" parent="Background" node_paths=PackedStringArray("camera")]
 z_index = -22
 texture_filter = 1
-position = Vector2(-71, 7)
-rotation = 0.598648
+position = Vector2(-67, -7)
 texture = ExtResource("44_l1uqm")
+offset = Vector2(0, 18)
 script = ExtResource("37_bp4cd")
 camera = NodePath("../../Balloon/Node/Camera2D")
 scaleX = 0.75
@@ -1144,16 +1163,22 @@ scaleY = 0.75
 show_behind_parent = true
 texture_filter = 1
 material = SubResource("ShaderMaterial_dx6so")
-position = Vector2(-30.3981, -67.631)
-rotation = -0.598648
+position = Vector2(4, -55)
 emitting = false
 amount = 1
 texture = ExtResource("51_wbq00")
-lifetime = 0.5
+lifetime = 0.29
 speed_scale = 0.05
 local_coords = true
 emission_shape = 1
 emission_sphere_radius = 8.0
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(0, -350)
+collision_layer = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+shape = SubResource("RectangleShape2D_wbq00")
 
 [connection signal="startMinigame" from="Balloon" to="Minigame" method="_on_balloon_start_minigame"]
 [connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]

@@ -10,10 +10,10 @@ func _process(delta):
 	var ty = parent.position.y
 	var x = positionTracker.x
 	var y = positionTracker.y
-	if(x > tx + 75):
-		positionTracker.x = tx+75
-	if(x < tx - 75):
-		positionTracker.x = tx-75
+	if(x > tx + 50):
+		positionTracker.x = tx+50
+	if(x < tx - 50):
+		positionTracker.x = tx-50
 	if(y > ty + 60):
 		positionTracker.y = ty+60
 	if(y < ty+5  and not (ty+5 > -10)):

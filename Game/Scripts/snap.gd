@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var camera : Camera2D
-var basePos : Vector2
+@export var basePos : Vector2
 @export var scaleX : float = 0.7
 @export var scaleY : float = 0.7
 
