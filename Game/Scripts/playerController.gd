@@ -115,13 +115,15 @@ func _process(delta):
 	get_input()
 	timers(delta)
 	
-	
 	#states
 	if(linear_velocity.y < -4):
 		if(upAnimTimer == -1):
 			upAnimTimer = 0
-		elif upAnimTimer > 0.3:
+		elif upAnimTimer > 0.2:
 			state = "Float"
+	
+	if(linear_velocity.y > -2):
+		upAnimTimer = -1
 	
 	if(linear_velocity.y > 2 and state == "Float"):
 		state = "Fall"

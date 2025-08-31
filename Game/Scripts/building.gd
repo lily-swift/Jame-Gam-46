@@ -59,9 +59,7 @@ func floatAway():
 	collision_mask = 0
 	collision_layer = 0
 	await BalloonForBalloonGod.finished
-	print(BalloonGod.basePos)
 	BalloonGod.basePos -= Vector2(0,1)
-	print(BalloonGod.basePos)
 	queue_free()
 	
 	
@@ -69,6 +67,8 @@ func floatAway():
 func _process(delta):
 	if(disappeared):
 		return
+	if(disappeared):
+		print("wtf")
 	BalloonForBalloonGod.emitting = false
 	if(Input.is_action_just_pressed("debug") and visible):
 		bubble()
