@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c7pewqubv7r4w"]
+
+[ext_resource type="Shader" uid="uid://ci31kcm281bjo" path="res://Scenes/screenfade.gdshader" id="1_msc6o"]
+
+[resource]
+shader = ExtResource("1_msc6o")
+shader_parameter/injectPoint = Vector2(0, 0)
+shader_parameter/progress = 3.5
+shader_parameter/sizeX = 320.0
+shader_parameter/sizeY = 180.0

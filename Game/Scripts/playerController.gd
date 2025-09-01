@@ -30,6 +30,7 @@ var drillCDT = 0;
 var building : Object
 
 var state : String = "Idle"
+var noInput = true
 var size : int = 2;
 var rot : float = 0;
 
@@ -112,7 +113,8 @@ func on_ground():
 	
 
 func _process(delta):
-	get_input()
+	if(not noInput):
+		get_input()
 	timers(delta)
 	
 	#states
@@ -158,7 +160,7 @@ func _process(delta):
 		virusAnims.play("Injecting")
 	
 	#Jump
-	if jumpPressed and (jumpCDT <= 0) and jumpsLeft > 0:
+	if jumpPressed and (jumpCDT <= 0) and jumpsLeft > 0 and not noInput:
 		jump()
 	
 	if(jumpT > 0 or jumpELT > 0 or jumpSUT > 0):
@@ -218,4 +220,11 @@ func _on_minigame_minigame_win():
 	linear_velocity = Vector2(0,0)
 	virusBody.linear_velocity = Vector2(0,0)
 	
-	
+
+func _on_node_2d_game_lose():
+	print("disconnect")
+	noInput = true
+	gravity_scale = -0.2
+	linear_velocity.x = 0
+	$PinJoint2D.set_node_a("Balloon")
+	$PinJoint2D.set_node_b("Balloon")

@@ -2,6 +2,8 @@ extends Camera2D
 var positionTracker : Vector2
 @export var parent : Node2D
 
+var fix : bool = false
+
 func _init():
 	positionTracker = position 
 
@@ -24,5 +26,9 @@ func _process(delta):
 		
 	if(y>-10):
 		positionTracker.y = -10
-	
-	position = Vector2(round(positionTracker.x),round(positionTracker.y))
+	if not fix:
+		position = Vector2(round(positionTracker.x),round(positionTracker.y))
+
+
+func _on_node_2d_game_lose():
+	fix = true

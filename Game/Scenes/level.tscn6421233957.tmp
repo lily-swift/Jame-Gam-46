@@ -761,8 +761,7 @@ parent = NodePath("../..")
 
 [node name="Node2D" type="Node2D" parent="Balloon/Node/Camera2D"]
 script = ExtResource("21_0cmrb")
-balloonGoal = 1
-time = 25.0
+balloonGoal = -2
 
 [node name="Label" type="Label" parent="Balloon/Node/Camera2D/Node2D"]
 texture_filter = 1
@@ -1710,7 +1709,6 @@ position = Vector2(0, -40)
 texture = ExtResource("41_md013")
 script = ExtResource("37_bp4cd")
 camera = NodePath("../../Balloon/Node/Camera2D")
-scaleX = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/BackgroundMountains"]
 position = Vector2(471, 0)
@@ -1739,7 +1737,7 @@ texture = ExtResource("44_l1uqm")
 offset = Vector2(0, 18)
 script = ExtResource("37_bp4cd")
 camera = NodePath("../../Balloon/Node/Camera2D")
-scaleX = 0.85
+scaleX = 0.75
 scaleY = 0.75
 
 [node name="Balloon4BalloonGod" type="CPUParticles2D" parent="Background/BalloonGod"]

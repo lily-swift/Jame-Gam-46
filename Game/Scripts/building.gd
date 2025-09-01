@@ -63,10 +63,8 @@ func floatAway():
 	collision_mask = 0
 	collision_layer = 0
 	await BalloonForBalloonGod.finished
-	BalloonGod.basePos -= Vector2(0,1)
+	BalloonGod.basePos -= Vector2(0,0.5) * (size + 1)
 
-	
-	
 	
 func _process(delta):
 	if(disappeared):
