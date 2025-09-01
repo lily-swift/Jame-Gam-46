@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=89 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scripts/building.gd" id="1_u0did"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
 [ext_resource type="PackedScene" uid="uid://cg56wb1eohjbw" path="res://Scenes/pause.tscn" id="21_dx6so"]
 [ext_resource type="Script" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
+[ext_resource type="Texture2D" uid="uid://buur4b2mq6gc8" path="res://Art/groundSprite_total.png" id="22_54tli"]
 [ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
 [ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
 [ext_resource type="Script" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
@@ -658,19 +659,49 @@ fadeTime = 0.3
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, 80)
-scale = Vector2(4.36, 1)
 collision_layer = 2
 collision_mask = 289
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+scale = Vector2(10, 1)
 shape = SubResource("RectangleShape2D_i2t4f")
 
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+texture = ExtResource("22_54tli")
+offset = Vector2(0, -4)
+
 [node name="ColorRect" type="ColorRect" parent="Ground"]
-offset_left = -160.0
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2000.0
+offset_top = -9.0
+offset_right = 2000.0
+offset_bottom = -8.0
+grow_horizontal = 2
+color = Color(0, 0.329412, 0.396078, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Ground"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2000.0
 offset_top = -10.0
-offset_right = 160.0
-offset_bottom = 10.0
-color = Color(0, 0.243137, 0.290196, 1)
+offset_right = 2000.0
+offset_bottom = -9.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Ground"]
+position = Vector2(-960, 0)
+texture = ExtResource("22_54tli")
+offset = Vector2(0, -4)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Ground"]
+position = Vector2(960, 0)
+texture = ExtResource("22_54tli")
+offset = Vector2(0, -4)
 
 [node name="VirusBody" type="RigidBody2D" parent="."]
 position = Vector2(0, 37)
