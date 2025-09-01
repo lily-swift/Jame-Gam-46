@@ -10,9 +10,11 @@ class_name MainMenu extends Node
 @onready var backButton : Button = $"../Options/Back"
 
 var levelScene : PackedScene;
+var creditsScene : PackedScene;
 
 func _ready():
 	levelScene = preload("res://Scenes/level.tscn")
+	creditsScene = preload("res://Scenes/credits.tscn")
 	startButton.pressed.connect(_start_pressed)
 	optionsButton.pressed.connect(_options_pressed)
 	creditsButton.pressed.connect(_credits_pressed)
@@ -31,7 +33,8 @@ func _options_pressed():
 	optionsPanel.show()
 
 func _credits_pressed():
-	pass
+	await get_tree().create_timer(0.05).timeout
+	get_tree().change_scene_to_packed(creditsScene);
 
 func _exit_pressed():
 	await get_tree().create_timer(0.05).timeout

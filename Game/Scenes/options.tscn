@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqa6isrfhird2"]
+[gd_scene load_steps=5 format=3 uid="uid://sdva8bd8b18a"]
 
 [ext_resource type="Script" uid="uid://gqo6cpl1l2m" path="res://Scripts/options.gd" id="1_ww8vx"]
 [ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="2_kftxf"]
@@ -12,9 +12,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -100.0
-offset_top = -64.0
+offset_top = -57.0
 offset_right = 100.0
-offset_bottom = 64.0
+offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ww8vx")
