@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=116 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scripts/building.gd" id="1_u0did"]
 [ext_resource type="Texture2D" uid="uid://dq0mn3h2ynjuf" path="res://Art/Buildings/rubble3.png" id="4_luodc"]
@@ -693,12 +693,15 @@ shader_parameter/color = Color(0.682353, 0.156863, 0.313726, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbq00"]
 size = Vector2(4000, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcm81"]
+size = Vector2(20, 500)
+
 [node name="Level2" type="Node2D"]
 texture_filter = 1
 
 [node name="Minigame" parent="." instance=ExtResource("40_nkhef")]
 position = Vector2(46, 0)
-plungerSpeed = 27.0
+plungerSpeed = 32.0
 winBarPixelHeight = 4
 offset = Vector2(40, 0)
 
@@ -762,7 +765,7 @@ parent = NodePath("../..")
 [node name="Node2D" type="Node2D" parent="Balloon/Node/Camera2D"]
 script = ExtResource("21_0cmrb")
 balloonGoal = 1
-time = 25.0
+time = 300.0
 
 [node name="Label" type="Label" parent="Balloon/Node/Camera2D/Node2D"]
 texture_filter = 1
@@ -1766,6 +1769,24 @@ shape = SubResource("RectangleShape2D_wbq00")
 [node name="Collapse sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("53_dx6so")
 volume_db = -12.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-722, 51)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -150)
+shape = SubResource("RectangleShape2D_tcm81")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(890, 39)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, -150)
+shape = SubResource("RectangleShape2D_tcm81")
 
 [connection signal="minigameLose" from="Minigame" to="Balloon" method="_on_minigame_minigame_lose"]
 [connection signal="minigameWin" from="Minigame" to="Balloon" method="_on_minigame_minigame_win"]

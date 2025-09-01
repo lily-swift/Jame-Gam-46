@@ -12,9 +12,12 @@ func _process(delta):
 	var ty = parent.position.y
 	var x = positionTracker.x
 	var y = positionTracker.y
-	if(x > tx + 50):
+	if(x<-520):
+		positionTracker.x = -520
+	
+	if(x > tx + 50 and not tx+50 < -520):
 		positionTracker.x = tx+50
-	if(x < tx - 50):
+	if(x < tx - 50 and not tx-50 > 700):
 		positionTracker.x = tx-50
 	if(y > ty + 60):
 		positionTracker.y = ty+60
@@ -24,6 +27,11 @@ func _process(delta):
 		else:
 			positionTracker.y = ty+5
 		
+	if(x > 700):
+		positionTracker.x = 700
+	
+	
+	
 	if(y>-10):
 		positionTracker.y = -10
 	if not fix:
