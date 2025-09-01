@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b61mae0dkps26"]
+[gd_scene load_steps=5 format=3 uid="uid://b61mae0dkps26"]
 
+[ext_resource type="Script" uid="uid://ctt0c5his6tbo" path="res://Scripts/credits.gd" id="1_1bamb"]
 [ext_resource type="Texture2D" uid="uid://o1a7k0aoooy3" path="res://Art/Buildings/office_blue.png" id="1_gryuy"]
 [ext_resource type="Theme" uid="uid://chub8xaykuame" path="res://Resources/main_menu.tres" id="2_ccovl"]
+[ext_resource type="FontFile" uid="uid://dswbhi82jmbe" path="res://m5x7.ttf" id="3_ccovl"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1bamb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -22,15 +25,80 @@ visible = false
 position = Vector2(43, 110)
 texture = ExtResource("1_gryuy")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 314.0
+offset_bottom = 175.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -18.0
+offset_right = 19.0
+offset_bottom = 20.0
+grow_horizontal = 2
+theme = ExtResource("2_ccovl")
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = 22.0
+offset_right = 148.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Vivian" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "Vivian - Programming, Project Management"
+
+[node name="Lily" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "Lily - Programmer, Designer"
+tab_stops = PackedFloat32Array(0)
+
+[node name="Ashley_Vivien" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "Ashley/Vivien Wrenn - Designer, Artist"
+
+[node name="f92672" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "f92672 - Artist"
+
+[node name="Niv" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "Niv - Artist"
+
+[node name="Dylan" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "Dylan - SFX/Music Producer"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 2
+offset_left = 11.0
+offset_top = 151.0
+offset_right = 50.0
+offset_bottom = 168.0
+size_flags_vertical = 3
 theme = ExtResource("2_ccovl")
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

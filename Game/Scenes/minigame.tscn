@@ -1,82 +1,18 @@
-[gd_scene load_steps=24 format=3 uid="uid://cd350i2yignp4"]
+[gd_scene load_steps=14 format=3 uid="uid://cd350i2yignp4"]
 
 [ext_resource type="Texture2D" uid="uid://cyp65uswy6fpn" path="res://Art/Minigame/inject_ui_border.png" id="1_entbh"]
 [ext_resource type="Script" uid="uid://dj7k8ccyxjwm4" path="res://Scripts/minigame.gd" id="1_vt7p6"]
 [ext_resource type="Texture2D" uid="uid://bmud2g03j3cxp" path="res://Art/Minigame/inject_ui_bg.png" id="2_cnqmc"]
 [ext_resource type="Texture2D" uid="uid://bsglbh1b213rs" path="res://Art/Minigame/inject_ui_injector.png" id="3_cnqmc"]
 [ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="4_xvspr"]
-[ext_resource type="Texture2D" uid="uid://dni13lxhjlm1j" path="res://Art/Minigame/InjectIndicatorFrames/Failure/inject_indicator_fail_1.png" id="5_vrsa3"]
+[ext_resource type="PackedScene" uid="uid://dcei1meet85dq" path="res://Scenes/indicator.tscn" id="5_vnlq7"]
 [ext_resource type="AudioStream" uid="uid://8h0itw8682mq" path="res://Sound/SFX_injectSuccessJingle.wav" id="5_vt7p6"]
-[ext_resource type="Texture2D" uid="uid://bcrvee8er6ncj" path="res://Art/Minigame/InjectIndicatorFrames/Failure/inject_indicator_fail_2.png" id="6_7hunx"]
-[ext_resource type="Texture2D" uid="uid://db51u3tpgujcm" path="res://Art/Minigame/InjectIndicatorFrames/Failure/inject_indicator_fail_3.png" id="7_5amql"]
 [ext_resource type="Shader" uid="uid://bwgeqbipqcx1m" path="res://Scripts/mask_shader.gdshader" id="7_875xv"]
-[ext_resource type="Texture2D" uid="uid://bb4qfolml8kt5" path="res://Art/Minigame/InjectIndicatorFrames/Failure/inject_indicator_fail_4.png" id="8_cjpj7"]
 [ext_resource type="Texture2D" uid="uid://bojaxmk520ruo" path="res://Art/whiteSquare.png" id="8_hu0dr"]
-[ext_resource type="Texture2D" uid="uid://bkeny358725c0" path="res://Art/Minigame/InjectIndicatorFrames/Failure/inject_indicator_fail_5.png" id="9_t7v8w"]
 [ext_resource type="AudioStream" uid="uid://bna45qmhg0m07" path="res://Sound/SFX_injectFailJingle.wav" id="9_xcq3l"]
-[ext_resource type="Texture2D" uid="uid://bn2w1hrv435l5" path="res://Art/Minigame/InjectIndicatorFrames/Success/inject_indicator_success_1.png" id="10_o0wen"]
-[ext_resource type="Texture2D" uid="uid://cjgkilnxlkx1f" path="res://Art/Minigame/InjectIndicatorFrames/Success/inject_indicator_success_2.png" id="11_y1yvp"]
-[ext_resource type="Texture2D" uid="uid://m1c1y15xjv4s" path="res://Art/Minigame/InjectIndicatorFrames/Success/inject_indicator_success_3.png" id="12_surmu"]
-[ext_resource type="Texture2D" uid="uid://bylduojv67hab" path="res://Art/Minigame/InjectIndicatorFrames/Success/inject_indicator_success_4.png" id="13_yh4dq"]
-[ext_resource type="Texture2D" uid="uid://ccxobrmairc6u" path="res://Art/Minigame/InjectIndicatorFrames/Success/inject_indicator_success_5.png" id="14_bs74f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0kie"]
 size = Vector2(20, 2)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cjpj7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_vrsa3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_7hunx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_5amql")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_cjpj7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_t7v8w")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"Failure",
-"speed": 15.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_o0wen")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_y1yvp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_surmu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_yh4dq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_bs74f")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"Success",
-"speed": 15.0
-}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_icj52"]
 shader = ExtResource("7_875xv")
@@ -126,11 +62,11 @@ copy_mode = 2
 texture_filter = 1
 texture = ExtResource("3_cnqmc")
 
-[node name="Indicator" type="AnimatedSprite2D" parent="Plunger"]
-texture_filter = 1
+[node name="Indicator" parent="Plunger" instance=ExtResource("5_vnlq7")]
 position = Vector2(0, 23.5)
-sprite_frames = SubResource("SpriteFrames_cjpj7")
-animation = &"Failure"
+
+[node name="IndicatorSpawnPos" type="Node2D" parent="Plunger"]
+position = Vector2(0, 23.5)
 
 [node name="Mask" type="Sprite2D" parent="."]
 z_index = 6
