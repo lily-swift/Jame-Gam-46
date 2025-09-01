@@ -63,18 +63,18 @@ grow_vertical = 2
 [node name="Vivian" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Vivian - Programming, Project Management"
+text = "Vivian Allen - Programming, Project Management"
 
 [node name="Lily" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Lily - Programmer, Designer"
+text = "Lily Swift - Programmer, Designer"
 tab_stops = PackedFloat32Array(0)
 
 [node name="Ashley_Vivien" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Ashley/Vivien Wrenn - Designer, Artist"
+text = "Ashley/Vivien Wrenn - Artist"
 
 [node name="f92672" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -84,19 +84,29 @@ text = "f92672 - Artist"
 [node name="Niv" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Niv - Artist"
+text = "Niv Meade - Background Artist"
 
-[node name="Dylan" type="Label" parent="VBoxContainer"]
+[node name="Echolane" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Dylan - SFX/Music Producer"
+text = "Echolane - SFX/Music Producer"
+
+[node name="Attributions" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "Title Font - Not Jam"
+
+[node name="Attributions2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ccovl")
+text = "Game Font - Daniel Linssen"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 2
-offset_left = 11.0
-offset_top = 151.0
-offset_right = 50.0
-offset_bottom = 168.0
+offset_left = 10.0
+offset_top = 155.0
+offset_right = 49.0
+offset_bottom = 172.0
 size_flags_vertical = 3
 theme = ExtResource("2_ccovl")
 text = "Back"
