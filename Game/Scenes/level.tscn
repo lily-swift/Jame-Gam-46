@@ -764,8 +764,8 @@ parent = NodePath("../..")
 
 [node name="Node2D" type="Node2D" parent="Balloon/Node/Camera2D"]
 script = ExtResource("21_0cmrb")
-balloonGoal = 1
-time = 300.0
+balloonGoal = 12
+time = 90.0
 
 [node name="Label" type="Label" parent="Balloon/Node/Camera2D/Node2D"]
 texture_filter = 1
@@ -1624,7 +1624,7 @@ animation = &"Rubble"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="WaterTowers/WaterTower"]
 z_index = -4
-position = Vector2(0, 39)
+position = Vector2(-6, 41)
 sprite_frames = SubResource("SpriteFrames_s14gf")
 offset = Vector2(0, 6)
 script = ExtResource("39_l1uqm")
@@ -1660,7 +1660,7 @@ animation = &"Rubble"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="WaterTowers/WaterTower2"]
 z_index = -4
-position = Vector2(0, 39)
+position = Vector2(6, 41)
 sprite_frames = SubResource("SpriteFrames_s14gf")
 offset = Vector2(0, 6)
 script = ExtResource("39_l1uqm")
@@ -1696,7 +1696,7 @@ animation = &"Rubble"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="WaterTowers/WaterTower3"]
 z_index = -4
-position = Vector2(0, 39)
+position = Vector2(-6, 41)
 sprite_frames = SubResource("SpriteFrames_s14gf")
 offset = Vector2(0, 6)
 script = ExtResource("39_l1uqm")
@@ -1754,6 +1754,7 @@ emitting = false
 amount = 1
 texture = ExtResource("51_wbq00")
 lifetime = 0.29
+one_shot = true
 speed_scale = 0.05
 local_coords = true
 emission_shape = 1

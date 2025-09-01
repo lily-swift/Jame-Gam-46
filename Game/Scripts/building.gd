@@ -64,6 +64,7 @@ func floatAway():
 	collision_layer = 0
 	await BalloonForBalloonGod.finished
 	BalloonGod.basePos -= Vector2(0,0.5) * (size + 1)
+	print(BalloonGod.basePos)
 
 	
 func _process(delta):
@@ -71,7 +72,6 @@ func _process(delta):
 		return
 	if(disappeared):
 		print("wtf")
-	BalloonForBalloonGod.emitting = false
 	if(Input.is_action_just_pressed("debug") and visible):
 		bubble()
 	
