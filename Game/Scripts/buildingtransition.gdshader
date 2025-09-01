@@ -12,7 +12,7 @@ void vertex() {
 void fragment() {
 	float radius = pow(progress,2)*2.2;
 	// COLOR.b = 100.0;
-	COLOR.a = (sign(pow( (UV.x * sizeX - injectPoint.x)/sizeX ,2.0) + pow((UV.y * sizeY - injectPoint.y)/sizeY ,2.0) -  radius) + 1.0)*50.0;
+	COLOR.a = (sign(pow( (UV.x * sizeX - injectPoint.x)/sizeX ,2.0) + pow((UV.y * sizeY - injectPoint.y)/sizeY ,2.0) -  radius) + 1.0)*50.0 * COLOR.a;
 	// Called for every pixel the material is visible on.
 }
 

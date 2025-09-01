@@ -74,7 +74,7 @@ func Start() -> void:
 		bar.scale = Vector2(bar.scale.x, bar.scale.y * winBarPixelHeight)
 		bar.clicked.connect(_clicked)
 		
-		var newPosition : Vector2 = Vector2(0, (randf() * 40) - 20)
+		var newPosition : Vector2 = Vector2(0, (randf() * 36) - 18)
 		while IsOverlap(newPosition):
 			newPosition = Vector2(0, (randf() * 40) - 20)
 		bar.position = newPosition

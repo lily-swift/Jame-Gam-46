@@ -12,7 +12,7 @@ var bubbled : bool = false
 var disappeared : bool = false
 var startpos : Vector2
 @export var injectPoint : Node2D
-var bubbleProgress : float
+var bubbleProgress : float = 0
 
 var BalloonForBalloonGod : CPUParticles2D
 var BalloonGod : Sprite2D
@@ -22,6 +22,8 @@ var rubbleSFX : AudioStreamPlayer2D
 func _ready():
 	$AnimatedSprite2D.play("default")
 	$Effects.hide()
+	show()
+	shader.set_shader_parameter("progress", 0)
 	$Effects.position = Vector2(0,0)
 	startpos = position
 	print(startpos)
