@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg56wb1eohjbw"]
+
+[ext_resource type="Script" uid="uid://cydg2milm8g2r" path="res://Scripts/pause.gd" id="1_e0jm0"]
+[ext_resource type="FontFile" uid="uid://dswbhi82jmbe" path="res://m5x7.ttf" id="2_3fojq"]
+[ext_resource type="PackedScene" uid="uid://sdva8bd8b18a" path="res://Scenes/options.tscn" id="3_nsogc"]
+[ext_resource type="Theme" uid="uid://chub8xaykuame" path="res://Resources/main_menu.tres" id="4_0pswh"]
+
+[node name="Pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_e0jm0")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = -112.0
+offset_right = 142.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel"]
+z_index = 11
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.5
+offset_right = 28.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_3fojq")
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Options" parent="Panel" instance=ExtResource("3_nsogc")]
+visible = false
+z_index = 11
+layout_mode = 1
+
+[node name="PauseButtons" type="VBoxContainer" parent="Panel"]
+visible = false
+z_index = 11
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -29.0
+offset_right = 73.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0pswh")
+
+[node name="Resume" type="Button" parent="Panel/PauseButtons"]
+z_index = 11
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_0pswh")
+text = "Resume Game"
+
+[node name="Options" type="Button" parent="Panel/PauseButtons"]
+z_index = 11
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_0pswh")
+text = "Options"
+
+[node name="Return" type="Button" parent="Panel/PauseButtons"]
+z_index = 11
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_0pswh")
+text = "Return To Main Menu"
+
+[connection signal="pressed" from="Panel/PauseButtons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/PauseButtons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Panel/PauseButtons/Return" to="." method="_on_return_pressed"]
