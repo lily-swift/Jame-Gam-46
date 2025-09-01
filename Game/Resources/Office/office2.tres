@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cim4sijak7yls"]
 
-[ext_resource type="Shader" uid="uid://bnqaqhglbwwr7" path="res://Scripts/buildingtransition.gdshader" id="1_l21jn"]
+[ext_resource type="Shader" uid="uid://bnqaqhglbwwr7" path="res://Scripts/buildingtransition.gdshader" id="1_tmrh6"]
 
 [resource]
-shader = ExtResource("1_l21jn")
+shader = ExtResource("1_tmrh6")
 shader_parameter/injectPoint = Vector2(67, 5)
 shader_parameter/enabled = false
 shader_parameter/progress = 0.0

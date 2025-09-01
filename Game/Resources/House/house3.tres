@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bgfqygl7g0ora"]
+
+[ext_resource type="Shader" uid="uid://bnqaqhglbwwr7" path="res://Scripts/buildingtransition.gdshader" id="1_3sg7n"]
+
+[resource]
+shader = ExtResource("1_3sg7n")
+shader_parameter/injectPoint = Vector2(67, 5)
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
+shader_parameter/sizeX = 60.0
+shader_parameter/sizeY = 80.0
