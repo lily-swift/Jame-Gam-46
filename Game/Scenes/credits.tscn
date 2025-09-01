@@ -63,7 +63,7 @@ grow_vertical = 2
 [node name="Vivian" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Vivian Allen - Programming, Project Management"
+text = "Vivian Allen - Programmer, Project Manager"
 
 [node name="Lily" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -94,12 +94,12 @@ text = "EchoLane - SFX/Music Producer"
 [node name="Attributions" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Title Font - Not Jam"
+text = "Not Jam - NotJam Third Dimension 15 - Title Font"
 
 [node name="Attributions2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Game Font - Daniel Linssen"
+text = "Daniel Linssen - m5x7 - Game Font"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 2
