@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="17_nngtn"]
 [ext_resource type="Script" path="res://Scenes/fade_in.gd" id="19_dx6so"]
 [ext_resource type="Script" uid="uid://chj5h6bx5dnxr" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
+[ext_resource type="PackedScene" uid="uid://cg56wb1eohjbw" path="res://Scenes/pause.tscn" id="21_dx6so"]
 [ext_resource type="Script" uid="uid://b8k3rora2iv3f" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
 [ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
 [ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
@@ -44,7 +45,6 @@
 [ext_resource type="Script" uid="uid://dek45tkka5yfk" path="res://Scenes/testrotate.gd" id="39_l1uqm"]
 [ext_resource type="Material" uid="uid://cim4sijak7yls" path="res://Resources/office2.tres" id="40_gx30c"]
 [ext_resource type="PackedScene" uid="uid://cd350i2yignp4" path="res://Scenes/minigame.tscn" id="40_nkhef"]
-[ext_resource type="Script" uid="uid://8skewj3u0poc" path="res://Scenes/pause.gd" id="41_fmtd1"]
 [ext_resource type="Material" uid="uid://coh7gbnssy8xa" path="res://Resources/office3.tres" id="41_jmchl"]
 [ext_resource type="Texture2D" uid="uid://c6mfm2s8cyxyl" path="res://Backgroundmountains.png" id="41_md013"]
 [ext_resource type="Material" uid="uid://da4v13vg8jo6c" path="res://Resources/office4.tres" id="42_jmchl"]
@@ -566,6 +566,12 @@ size = Vector2(4000, 20)
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
+[node name="Minigame" parent="." instance=ExtResource("40_nkhef")]
+position = Vector2(46, 0)
+plungerSpeed = 23.0
+winBarPixelHeight = 4
+offset = Vector2(40, 0)
+
 [node name="Balloon" type="RigidBody2D" parent="." node_paths=PackedStringArray("virusBody", "virusAnims", "virusDrillArea", "groundDetector")]
 top_level = true
 texture_filter = 1
@@ -647,6 +653,8 @@ texture = SubResource("GradientTexture1D_dx6so")
 script = ExtResource("19_dx6so")
 fadeTime = 0.3
 
+[node name="Pause" parent="Balloon/Node/Camera2D/Node2D" instance=ExtResource("21_dx6so")]
+
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, 80)
 scale = Vector2(4.36, 1)
@@ -721,19 +729,6 @@ stream = ExtResource("24_gf56v")
 volume_db = -10.0
 bus = &"Music"
 script = ExtResource("25_6y3s5")
-
-[node name="Minigame" parent="." instance=ExtResource("40_nkhef")]
-position = Vector2(46, 0)
-plungerSpeed = 23.0
-winBarPixelHeight = 4
-offset = Vector2(40, 0)
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("41_fmtd1")
 
 [node name="GooberSpawner" parent="." instance=ExtResource("33_maxl3")]
 position = Vector2(0, 66)
@@ -1184,7 +1179,7 @@ collision_layer = 8192
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 shape = SubResource("RectangleShape2D_wbq00")
 
-[connection signal="startMinigame" from="Balloon" to="Minigame" method="_on_balloon_start_minigame"]
-[connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]
 [connection signal="minigameLose" from="Minigame" to="Balloon" method="_on_minigame_minigame_lose"]
 [connection signal="minigameWin" from="Minigame" to="Balloon" method="_on_minigame_minigame_win"]
+[connection signal="startMinigame" from="Balloon" to="Minigame" method="_on_balloon_start_minigame"]
+[connection signal="body_entered" from="VirusBody/Area2D" to="VirusBody/Area2D" method="_on_body_entered"]
