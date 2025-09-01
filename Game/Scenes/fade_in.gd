@@ -22,8 +22,12 @@ func _ready():
 	
 func _process(delta):
 	if(balloonTime):
-		var sourcePoint = (balloonGod.global_position - global_position + Vector2(180,75))
-		print(sourcePoint)
+		#var sourcePoint = (((balloonGod.position * balloonGod.get_global_transform()) * balloonGod.get_global_transform_with_canvas()) * balloonGod.get_screen_transform())#(balloonGod.global_position - global_position + Vector2(180,75))
+		var sourcePoint = balloonGod.get_global_transform_with_canvas().origin
+		sourcePoint.x = clamp(sourcePoint.x, 0, get_viewport_rect().size.x) / get_viewport_rect().size.x
+		sourcePoint.y = clamp(sourcePoint.y, 0, get_viewport_rect().size.y) / get_viewport_rect().size.y
+		print("Source Point: ", sourcePoint)
+		print("Global position: ", global_position)
 		shader.set_shader_parameter("injectPoint", sourcePoint)
 		shader.set_shader_parameter("progress", shader.get_shader_parameter("progress") + delta/3.0)
 		if(shader.get_shader_parameter("progress") > 3):
