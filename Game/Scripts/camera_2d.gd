@@ -16,8 +16,11 @@ func _process(delta):
 		positionTracker.x = tx-50
 	if(y > ty + 60):
 		positionTracker.y = ty+60
-	if(y < ty+5  and not (ty+5 > -10)):
-		positionTracker.y = ty+5
+	if(y < ty+5):
+		if(ty+5 > -10):
+			positionTracker.y = -10
+		else:
+			positionTracker.y = ty+5
 		
 	if(y>-10):
 		positionTracker.y = -10
