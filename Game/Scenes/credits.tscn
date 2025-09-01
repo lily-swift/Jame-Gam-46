@@ -86,10 +86,10 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
 text = "Niv Meade - Background Artist"
 
-[node name="Echolane" type="Label" parent="VBoxContainer"]
+[node name="EchoLane" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ccovl")
-text = "Echolane - SFX/Music Producer"
+text = "EchoLane - SFX/Music Producer"
 
 [node name="Attributions" type="Label" parent="VBoxContainer"]
 layout_mode = 2
