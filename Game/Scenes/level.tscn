@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bw14fnsdi7bdq"]
+[gd_scene load_steps=88 format=3 uid="uid://bw14fnsdi7bdq"]
 
 [ext_resource type="Texture2D" uid="uid://coti1xaemoomq" path="res://Art/smallbuildingballoonplaceholder.png" id="1_81xng"]
 [ext_resource type="Script" uid="uid://cwuo63j25f3iq" path="res://Scripts/building.gd" id="1_u0did"]
@@ -23,13 +23,13 @@
 [ext_resource type="Texture2D" uid="uid://6fyds0bdk5rg" path="res://Art/PlayerSprites/inject_body_spritesheet.png" id="16_00k4y"]
 [ext_resource type="AudioStream" uid="uid://dxf5kuc3qeqng" path="res://Sound/SFX_buttonHover.wav" id="16_24uko"]
 [ext_resource type="Texture2D" uid="uid://sxxf3vguh22n" path="res://Art/PlayerSprites/jump_body.png" id="17_nngtn"]
-[ext_resource type="Script" path="res://Scenes/fade_in.gd" id="19_dx6so"]
-[ext_resource type="Script" uid="uid://chj5h6bx5dnxr" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
+[ext_resource type="Script" uid="uid://bbx8s3jieeq42" path="res://Scenes/fade_in.gd" id="19_dx6so"]
+[ext_resource type="Script" path="res://Scripts/game_timer.gd" id="21_0cmrb"]
 [ext_resource type="PackedScene" uid="uid://cg56wb1eohjbw" path="res://Scenes/pause.tscn" id="21_dx6so"]
-[ext_resource type="Script" uid="uid://b8k3rora2iv3f" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
+[ext_resource type="Script" path="res://Scripts/landeffects.gd" id="21_pnhnk"]
 [ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="24_gf56v"]
 [ext_resource type="AudioStream" uid="uid://bju3uhc0bgxbh" path="res://Sound/SFX_land_gapless.wav" id="24_u0did"]
-[ext_resource type="Script" uid="uid://dyp6oiws3gvia" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
+[ext_resource type="Script" path="res://Scripts/soundtrack.gd" id="25_6y3s5"]
 [ext_resource type="Script" uid="uid://du68t62m3wpjg" path="res://Scripts/camera_2d.gd" id="26_re0q2"]
 [ext_resource type="Texture2D" uid="uid://bgbdpnmhr0nvt" path="res://Art/Buildings/rubble4.png" id="29_hcs0j"]
 [ext_resource type="Texture2D" uid="uid://bi48mgib2pdt5" path="res://Art/Buildings/alt office-export-darker.png" id="31_csjfj"]
@@ -52,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://bsry2e61knh6f" path="res://Art/PlayerSprites/godballoonattempt.png" id="44_l1uqm"]
 [ext_resource type="Shader" uid="uid://b5knpctrrulo4" path="res://Scripts/Shaders/BalloonGodFood.gdshader" id="50_cpxpw"]
 [ext_resource type="Texture2D" uid="uid://btc0ibxaol403" path="res://Art/BalloonGodFood.png" id="51_wbq00"]
+[ext_resource type="AudioStream" uid="uid://bunmst6tpwe7g" path="res://Sound/SFX_injectFailStinger.wav" id="53_dx6so"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6hdu"]
 animations = [{
@@ -1178,6 +1179,10 @@ collision_layer = 8192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 shape = SubResource("RectangleShape2D_wbq00")
+
+[node name="Collapse sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("53_dx6so")
+volume_db = -12.0
 
 [connection signal="minigameLose" from="Minigame" to="Balloon" method="_on_minigame_minigame_lose"]
 [connection signal="minigameWin" from="Minigame" to="Balloon" method="_on_minigame_minigame_win"]

@@ -59,7 +59,7 @@ func _clicked(winBar: Sprite2D) -> void:
 func _on_balloon_start_minigame(pos, difficulty):
 	position = pos + offset
 	winBarCount = difficulty
-	winBarPixelHeight = 3 * (4 - difficulty)
+	winBarPixelHeight = 2 * (4 - difficulty) + 2
 	show()
 	Start()
 
@@ -92,7 +92,7 @@ func Reset() -> void:
 
 func IsOverlap(pos : Vector2) -> bool:
 	for barPos in winBarDict.values():
-		if pos.distance_to(barPos) <= winBarPixelHeight + 1:
+		if pos.distance_to(barPos) <= winBarPixelHeight * 1.4 + 1:
 			return true
 	return false
 	

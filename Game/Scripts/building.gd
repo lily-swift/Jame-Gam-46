@@ -17,6 +17,7 @@ var bubbleProgress : float
 var BalloonForBalloonGod : CPUParticles2D
 var BalloonGod : Sprite2D
 var Camera : Camera2D
+var rubbleSFX : AudioStreamPlayer2D
 
 func _ready():
 	$AnimatedSprite2D.play("default")
@@ -28,6 +29,7 @@ func _ready():
 	BalloonForBalloonGod = $"../../Background/BalloonGod/Balloon4BalloonGod"
 	BalloonGod = $"../../Background/BalloonGod"
 	Camera =  $"../../Balloon/Node/Camera2D"
+	rubbleSFX = $"../../Collapse sound"
 	
 
 func bubble():
@@ -60,7 +62,7 @@ func floatAway():
 	collision_layer = 0
 	await BalloonForBalloonGod.finished
 	BalloonGod.basePos -= Vector2(0,1)
-	queue_free()
+
 	
 	
 	
@@ -91,6 +93,7 @@ func _process(delta):
 		$Effects.position = rubblePos -Vector2(0,round(crumbleProgress * height * 1.1))
 		crumbleProgress += delta * crumbleSpeed
 		if(crumbleProgress >= 1):
+			rubbleSFX.stop()
 			crumbling = false
 			$AnimatedSprite2D.hide()
 	
@@ -98,6 +101,7 @@ func _process(delta):
 func rubble():
 	if(not crumbling):
 		crumbling = true
+		rubbleSFX.play()
 		$Effects.play("Rubble")
 		$Effects.position = rubblePos
 		$Effects.show()

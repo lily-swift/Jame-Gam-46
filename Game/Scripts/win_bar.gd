@@ -10,7 +10,7 @@ func _input(event) -> void:
 	if event is InputEventKey:
 		if not (event.pressed and event.keycode == KEY_SPACE):
 			return
-		if not keyPressTimer.is_stopped():
+		if false: #not keyPressTimer.is_stopped():
 			return
 		if plungerOverlap:
 			clicked.emit(self)
