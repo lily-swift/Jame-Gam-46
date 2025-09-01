@@ -49,7 +49,6 @@ func _process(delta: float) -> void:
 		else:
 			Lose()
 		hide()
-		print("Minigame finished!")
 		Reset()
 		return
 
@@ -87,7 +86,6 @@ func Reset() -> void:
 	beginMoving = false
 	plungerRigidBody2D.linear_velocity = Vector2(0,0)
 	plungerRigidBody2D.position = initPlungerPosition
-	print("RESET!")
 	for bar in winBarDict.keys():
 		bar.queue_free()
 	winBarDict.clear()

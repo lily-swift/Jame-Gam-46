@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqa6isrfhird2"]
+
+[ext_resource type="Script" uid="uid://gqo6cpl1l2m" path="res://Scripts/options.gd" id="1_ww8vx"]
+[ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="2_kftxf"]
+[ext_resource type="FontFile" uid="uid://dswbhi82jmbe" path="res://m5x7.ttf" id="3_663nc"]
+[ext_resource type="Theme" uid="uid://chub8xaykuame" path="res://Resources/main_menu.tres" id="4_hvj8k"]
+
+[node name="Options" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -64.0
+offset_right = 100.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ww8vx")
+testSFX = ExtResource("2_kftxf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 14.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_663nc")
+text = "Options"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 105.0
+offset_right = 36.0
+offset_bottom = 125.0
+size_flags_vertical = 3
+theme = ExtResource("4_hvj8k")
+text = "Back
+"
+
+[node name="MusicSlider" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 200.0
+offset_bottom = 55.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MusicSlider"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_663nc")
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HSlider" type="HSlider" parent="MusicSlider"]
+layout_mode = 2
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SFXSlider" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 90.0
+alignment = 1
+
+[node name="Label" type="Label" parent="SFXSlider"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_663nc")
+text = "Sound Effects Volume"
+horizontal_alignment = 1
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HSlider" type="HSlider" parent="SFXSlider"]
+layout_mode = 2
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[connection signal="value_changed" from="MusicSlider/HSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="drag_ended" from="SFXSlider/HSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="value_changed" from="SFXSlider/HSlider" to="." method="_on_sfx_slider_value_changed"]

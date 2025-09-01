@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://3wiksjp86ng"]
+[gd_scene load_steps=7 format=3 uid="uid://3wiksjp86ng"]
 
 [ext_resource type="Theme" uid="uid://chub8xaykuame" path="res://Resources/main_menu.tres" id="1_48xlc"]
 [ext_resource type="Script" uid="uid://e5j2w6ortl3s" path="res://Scripts/MMbutton.gd" id="2_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://p7hxh88ac52e" path="res://Background1.png" id="3_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://fccm6rkj8qci" path="res://Art/Buildings/alt officebubble.png" id="4_ce3w2"]
-[ext_resource type="FontFile" uid="uid://dswbhi82jmbe" path="res://m5x7.ttf" id="5_n45e2"]
-[ext_resource type="Script" uid="uid://gqo6cpl1l2m" path="res://Scripts/options.gd" id="5_opfnp"]
-[ext_resource type="AudioStream" uid="uid://cql10b56c8obv" path="res://Sound/SFX_injectPulse.wav" id="6_cp0ys"]
+[ext_resource type="PackedScene" uid="uid://dqa6isrfhird2" path="res://Scenes/options.tscn" id="5_opfnp"]
+[ext_resource type="AudioStream" uid="uid://bl1yw8n3bhn88" path="res://Sound/MUS_main.wav" id="8_yhxw7"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -17,7 +16,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -57,7 +55,7 @@ size_flags_vertical = 3
 theme = ExtResource("1_48xlc")
 text = "Exit"
 
-[node name="MenuButtonManager" type="Node" parent="." node_paths=PackedStringArray("startButton", "optionsButton", "creditsButton", "exitButton", "backButton")]
+[node name="MenuButtonManager" type="Node" parent="." node_paths=PackedStringArray("startButton", "optionsButton", "creditsButton", "exitButton")]
 process_mode = 3
 process_thread_group = 1
 process_thread_group_order = 0
@@ -67,7 +65,6 @@ startButton = NodePath("../VBoxContainer/Start")
 optionsButton = NodePath("../VBoxContainer/Options")
 creditsButton = NodePath("../VBoxContainer/Credits")
 exitButton = NodePath("../VBoxContainer/Exit")
-backButton = NodePath("../Options/Back")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.796243, 0.796243, 0.796243, 1)
@@ -96,93 +93,13 @@ color = Color(0.682353, 0.156863, 0.313726, 1)
 visible = false
 texture = ExtResource("4_ce3w2")
 
-[node name="Options" type="Panel" parent="."]
+[node name="Options" parent="." instance=ExtResource("5_opfnp")]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -64.0
-offset_right = 100.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_opfnp")
-testSFX = ExtResource("6_cp0ys")
 
-[node name="Label" type="Label" parent="Options"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 14.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("5_n45e2")
-text = "Options"
-horizontal_alignment = 1
-
-[node name="Back" type="Button" parent="Options"]
-offset_left = 3.0
-offset_top = 105.0
-offset_right = 36.0
-offset_bottom = 125.0
-size_flags_vertical = 3
-theme = ExtResource("1_48xlc")
-text = "Back
-"
-
-[node name="MusicSlider" type="VBoxContainer" parent="Options"]
-layout_mode = 0
-offset_top = 15.0
-offset_right = 200.0
-offset_bottom = 55.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Options/MusicSlider"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("5_n45e2")
-text = "Music Volume"
-horizontal_alignment = 1
-vertical_alignment = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="HSlider" type="HSlider" parent="Options/MusicSlider"]
-layout_mode = 2
-size_flags_vertical = 8
-max_value = 1.0
-step = 0.05
-value = 1.0
-
-[node name="SFXSlider" type="VBoxContainer" parent="Options"]
-layout_mode = 0
-offset_top = 52.0
-offset_right = 200.0
-offset_bottom = 92.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Options/SFXSlider"]
-clip_contents = true
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("5_n45e2")
-text = "Sound Effects Volume"
-horizontal_alignment = 1
-vertical_alignment = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="HSlider" type="HSlider" parent="Options/SFXSlider"]
-layout_mode = 2
-size_flags_vertical = 8
-max_value = 1.0
-step = 0.05
-value = 1.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="Options"]
-bus = &"SFX"
-
-[connection signal="value_changed" from="Options/MusicSlider/HSlider" to="Options" method="_on_music_slider_value_changed"]
-[connection signal="drag_ended" from="Options/SFXSlider/HSlider" to="Options" method="_on_sfx_slider_drag_ended"]
-[connection signal="value_changed" from="Options/SFXSlider/HSlider" to="Options" method="_on_sfx_slider_value_changed"]
+[node name="MusicAudioStreamPlayer2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(60, 26)
+stream = ExtResource("8_yhxw7")
+pitch_scale = 0.9
+autoplay = true
+bus = &"Music"

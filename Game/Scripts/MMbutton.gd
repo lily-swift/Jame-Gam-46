@@ -1,13 +1,13 @@
 class_name MainMenu extends Node
 
-@export var startButton : Button;
-@export var optionsButton : Button;
-@export var creditsButton : Button;
-@export var exitButton : Button;
-@export var backButton : Button
+@export var startButton : Button
+@export var optionsButton : Button
+@export var creditsButton : Button
+@export var exitButton : Button
 
 @onready var mainMenuButtons: VBoxContainer = $"../VBoxContainer"
 @onready var optionsPanel : Panel = $"../Options"
+@onready var backButton : Button = $"../Options/Back"
 
 var levelScene : PackedScene;
 

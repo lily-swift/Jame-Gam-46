@@ -4,7 +4,7 @@ extends Panel
 
 @onready var musicSlider : HSlider = $MusicSlider/HSlider
 @onready var sfxSlider : HSlider = $SFXSlider/HSlider
-@onready var sfxPlayer : AudioStreamPlayer2D = $AudioStreamPlayer
+@onready var sfxPlayer : AudioStreamPlayer2D = $SFXAudioStreamPlayer
 
 var musicBusId : int
 var sfxBusId : int
@@ -19,12 +19,10 @@ func _ready():
 	sfxSlider.value = db_to_linear(AudioServer.get_bus_volume_db(sfxBusId))
 
 func _on_music_slider_value_changed(value: float) -> void:
-	var db = linear_to_db(value)
-	AudioServer.set_bus_volume_db(musicBusId, db)
+	AudioServer.set_bus_volume_db(musicBusId, linear_to_db(value))
 
 func _on_sfx_slider_value_changed(value: float) -> void:
-	var db = linear_to_db(value)
-	AudioServer.set_bus_volume_db(sfxBusId, db)
+	AudioServer.set_bus_volume_db(sfxBusId, linear_to_db(value))
 
 func _on_sfx_slider_drag_ended(value_changed: bool) -> void:
 	sfxPlayer.play()
